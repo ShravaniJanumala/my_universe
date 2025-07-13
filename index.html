@@ -2,76 +2,171 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>To My Universe, Sai Sree</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome, Sai Sree</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #000;
+      color: #fff;
+      font-family: 'Arial', sans-serif;
+      overflow-x: hidden;
+    }
+    .welcome-screen {
+      position: fixed;
+      width: 100vw;
+      height: 100vh;
+      background: linear-gradient(to top left, #1a1a1a, #000000);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      z-index: 9999;
+      transition: opacity 1s ease;
+    }
+    .welcome-screen.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+    .start-btn {
+      margin-top: 20px;
+      padding: 12px 30px;
+      font-size: 18px;
+      background-color: #ff69b4;
+      border: none;
+      color: white;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    .start-btn:hover {
+      transform: scale(1.1);
+    }
+    .container {
+      padding: 20px;
+      max-width: 800px;
+      margin: auto;
+      display: none;
+    }
+    .glow {
+      color: #ff69b4;
+      text-shadow: 0 0 5px #ff69b4, 0 0 10px #ff69b4;
+    }
+    .her-photo {
+      width: 100px;
+      margin: 10px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px #ff69b4;
+    }
+    .cube-wrapper {
+      perspective: 800px;
+      margin: 20px auto;
+      width: 150px;
+      height: 150px;
+    }
+    .cube {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      animation: spin 10s infinite linear;
+    }
+    .face {
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+    }
+    .front { transform: translateZ(75px); }
+    .back { transform: rotateY(180deg) translateZ(75px); }
+    .right { transform: rotateY(90deg) translateZ(75px); }
+    .left { transform: rotateY(-90deg) translateZ(75px); }
+    .top { transform: rotateX(90deg) translateZ(75px); }
+    .bottom { transform: rotateX(-90deg) translateZ(75px); }
+
+    @keyframes spin {
+      from { transform: rotateX(0) rotateY(0); }
+      to { transform: rotateX(360deg) rotateY(360deg); }
+    }
+  </style>
 </head>
 <body>
 
-  <!-- 🎉 Welcome Screen -->
-  <div id="welcome-screen" class="screen">
-    <h1>Welcome, Sai Sree</h1>
-    <p>Tap to start your birthday portal</p>
-    <button onclick="startPortal()">Start Portal</button>
-  </div>
+<div class="welcome-screen" id="welcome">
+  <h1 class="glow">Welcome, Sai Sree</h1>
+  <p>Tap to start your birthday portal</p>
+  <button class="start-btn" onclick="startExperience()">Start Portal</button>
+</div>
 
-  <!-- 🎁 Main Portal -->
-  <div id="main-portal" class="hidden">
-    <!-- 🕊️ Paper Plane Animation -->
-    <div class="plane-wrapper">
-      <img src="https://cdn-icons-png.flaticon.com/512/148/148841.png" class="plane" />
+<div class="container" id="main">
+  <h1 class="glow">📡 Incoming Transmission from Alt-You to Sai Sree</h1>
+  <p>Message from Alt-Verse YOU-943 to: LOVE (Sai Sree)</p>
+  <button onclick="revealMessage()">Decrypt Message</button>
+
+  <div id="message" style="display:none;">
+    <p>
+      In Earth-94, I wake up every morning next to you.<br>
+      In Earth-77, we run a quiet bookstore near a lake.<br>
+      In Earth-13, we code silly projects and stay up all night laughing.<br><br>
+      But in this one, I just call you “Love.”<br>
+      If I were a man, I’d marry you in every timeline.<br><br>
+      You are not just my favorite human—you are my whole universe.<br><br>
+      Happy birthday, Sai Sree.<br>
+      I’m lucky this version of me still gets to love you.
+    </p>
+
+    <h2 class="glow">💖 Her Glowing Gallery</h2>
+    <div style="display: flex; flex-wrap: wrap; justify-content: center;">
+      <img src="saisree1.jpg" class="her-photo">
+      <img src="saisree2.jpg" class="her-photo">
+      <img src="saisree3.jpg" class="her-photo">
+      <img src="saisree4.jpg" class="her-photo">
+      <img src="saisree5.jpg" class="her-photo">
+      <img src="saisree6.jpg" class="her-photo">
     </div>
 
-    <h1 class="glitch typewriter">📡 Incoming Transmission from <span class="glow">Alt-You</span> to <span class="glow">Sai Sree</span></h1>
-    <p class="subline">Message from Alt-Verse YOU-943 to: LOVE (Sai Sree)</p>
-
-    <button onclick="revealMessage()">Decrypt Message</button>
-
-    <div id="message" class="hidden">
-      <p class="love-letter" id="typedLetter"></p>
-
-      <div style="margin-top: 30px;">
-        <h2 style="color: #ff69b4;">💖 Her Glowing Gallery</h2>
-        <div class="gallery">
-          <img src="saisree1.jpg" class="her-photo">
-          <img src="saisree2.jpg" class="her-photo">
-          <img src="saisree3.jpg" class="her-photo">
-          <img src="saisree4.jpg" class="her-photo">
-          <img src="saisree5.jpg" class="her-photo">
-          <img src="saisree6.jpg" class="her-photo">
-        </div>
-
-        <!-- 🧊 3D Cube -->
-        <div class="cube-wrapper">
-          <div class="cube">
-            <img src="saisree1.jpg" class="face front">
-            <img src="saisree2.jpg" class="face back">
-            <img src="saisree3.jpg" class="face right">
-            <img src="saisree4.jpg" class="face left">
-            <img src="saisree5.jpg" class="face top">
-            <img src="saisree6.jpg" class="face bottom">
-          </div>
-        </div>
+    <div class="cube-wrapper">
+      <div class="cube">
+        <img src="saisree1.jpg" class="face front">
+        <img src="saisree2.jpg" class="face back">
+        <img src="saisree3.jpg" class="face right">
+        <img src="saisree4.jpg" class="face left">
+        <img src="saisree5.jpg" class="face top">
+        <img src="saisree6.jpg" class="face bottom">
       </div>
-
-      <h2 class="countdown-title">🎂 Countdown to Your Next Birthday</h2>
-      <div id="countdown"></div>
     </div>
   </div>
+</div>
 
-  <!-- ❤️ Floating Hearts -->
-  <canvas id="hearts"></canvas>
+<!-- YouTube Audio Autoplay Hack -->
+<iframe width="0" height="0" src="https://www.youtube.com/embed/YOUR_VIDEO_ID?autoplay=1&loop=1&playlist=YOUR_VIDEO_ID" frameborder="0" allow="autoplay"></iframe>
 
-  <!-- 🎶 YouTube Background Song -->
-  <iframe
-    width="0"
-    height="0"
-    src="https://www.youtube.com/embed/AB2ACJ22fhY?autoplay=1&loop=1&playlist=AB2ACJ22fhY"
-    frameborder="0"
-    allow="autoplay"
-    allowfullscreen>
-  </iframe>
+<script>
+  function startExperience() {
+    document.getElementById('welcome').classList.add('hidden');
+    setTimeout(() => {
+      document.getElementById('welcome').style.display = 'none';
+      document.getElementById('main').style.display = 'block';
+    }, 1000);
+  }
 
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-  <script src="script.js"></script>
+  function revealMessage() {
+    document.getElementById('message').style.display = 'block';
+    launchConfetti();
+  }
+
+  function launchConfetti() {
+    if (typeof confetti === 'function') {
+      confetti({
+        particleCount: 200,
+        spread: 100,
+        origin: { y: 0.6 }
+      });
+    }
+  }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </body>
 </html>
