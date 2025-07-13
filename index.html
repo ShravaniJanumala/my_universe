@@ -3,67 +3,123 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>To My Universe, Sai Sree</title>
-  <link rel="stylesheet" href="style.css">
+  <title>My Universe – Sai Sree</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Orbitron', sans-serif;
+      background-color: #0d0d0d;
+      color: #ffffff;
+      text-align: center;
+      overflow-x: hidden;
+    }
+
+    .welcome {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(to bottom right, #111, #222);
+      padding: 20px;
+    }
+
+    .main {
+      padding: 40px 20px;
+    }
+
+    h1, h2 {
+      margin-bottom: 20px;
+      color: #ff69b4;
+    }
+
+    p {
+      line-height: 1.6;
+      font-size: 18px;
+      max-width: 700px;
+      margin: 10px auto;
+    }
+
+    button {
+      background-color: #ff69b4;
+      border: none;
+      color: white;
+      padding: 12px 25px;
+      font-size: 18px;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #ff3399;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    iframe {
+      display: none;
+    }
+  </style>
 </head>
 <body>
 
-  <div class="intro" id="intro">
+  <!-- Welcome Screen -->
+  <div id="welcomeScreen" class="welcome">
     <h1>Welcome, Sai Sree</h1>
+    <p>Tap to start your birthday portal</p>
     <button onclick="startPortal()">Start Portal</button>
   </div>
 
-  <div class="container hidden" id="mainContent">
-    <h1 class="glitch">📡 Incoming Transmission from <span class="glow">Alt-You</span> to <span class="glow">Sai Sree</span></h1>
-    <p class="subline">Message from Alt-Verse YOU-943 to: LOVE (Sai Sree)</p>
+  <!-- Main Content -->
+  <div id="mainContent" class="main hidden">
+    <h2>📡 Incoming Transmission from Alt-You to Sai Sree</h2>
+    <p>Message from Alt-Verse YOU-943 to: LOVE (Sai Sree)</p>
 
     <button onclick="revealMessage()">Decrypt Message</button>
 
     <div id="message" class="hidden">
-      <p class="love-letter" id="typedLetter"></p>
-
-      <div class="gallery">
-        <h2>💖 Her Glowing Gallery</h2>
-        <div class="photos">
-          <img src="images/saisree1.jpg" />
-          <img src="images/saisree2.jpg" />
-          <img src="images/saisree3.jpg" />
-          <img src="images/saisree4.jpg" />
-          <img src="images/saisree5.jpg" />
-          <img src="images/saisree6.jpg" />
-        </div>
-      </div>
-
-      <div class="cube-wrapper">
-        <div class="cube">
-          <img src="images/saisree1.jpg" class="face front">
-          <img src="images/saisree2.jpg" class="face back">
-          <img src="images/saisree3.jpg" class="face right">
-          <img src="images/saisree4.jpg" class="face left">
-          <img src="images/saisree5.jpg" class="face top">
-          <img src="images/saisree6.jpg" class="face bottom">
-        </div>
-      </div>
+      <p>
+        In Earth-94, I wake up every morning next to you.<br>
+        In Earth-77, we run a quiet bookstore near a lake.<br>
+        In Earth-13, we code silly projects and stay up all night laughing.<br><br>
+        But in this one, I just call you “Love.”<br>
+        If I were a man, I’d marry you in every timeline.<br><br>
+        You are not just my favorite human—you are my whole universe.<br><br>
+        Happy birthday, Sai Sree.<br>
+        I’m lucky this version of me still gets to love you.
+      </p>
     </div>
-
-    <div id="countdown"></div>
-
-    <!-- Optional Chat -->
-    <h2>💬 Chat with Alt-You</h2>
-    <input id="userInput" placeholder="Say something..." />
-    <button onclick="chat()">Send</button>
-    <p id="botReply"></p>
   </div>
 
-  <!-- Optional Audio -->
-  <audio autoplay loop>
-    <source src="assets/your-song.mp3" type="audio/mpeg">
-  </audio>
+  <!-- Hidden Music Player (YouTube autoplay) -->
+  <iframe width="0" height="0"
+    src="https://www.youtube.com/embed/AB2ACJ22fhY?autoplay=1&loop=1&playlist=AB2ACJ22fhY"
+    frameborder="0"
+    allow="autoplay"
+    allowfullscreen>
+  </iframe>
 
-  <!-- Mouse Trail -->
-  <canvas id="mouseCanvas"></canvas>
+  <script>
+    function startPortal() {
+      document.getElementById('welcomeScreen').style.display = 'none';
+      document.getElementById('mainContent').classList.remove('hidden');
+    }
 
-  <!-- Script files -->
-  <script src="script.js"></script>
+    function revealMessage() {
+      document.getElementById('message').classList.remove('hidden');
+    }
+  </script>
+
 </body>
 </html>
