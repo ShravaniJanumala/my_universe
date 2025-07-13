@@ -1,71 +1,140 @@
+/* style.css */
 body {
   margin: 0;
-  background: black;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
   color: white;
-  font-family: 'Courier New', monospace;
   overflow-x: hidden;
 }
 
-.start-screen {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle, #000000, #111111);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  z-index: 999;
+.container {
+  text-align: center;
+  padding: 30px;
 }
 
-.hidden {
-  display: none;
+h1.glitch {
+  font-size: 2em;
+  color: #fff;
+  text-shadow: 0 0 5px #ff00ff, 0 0 10px #00ffff;
+  animation: glitch 1s infinite alternate;
 }
 
-.glow {
-  color: #ff69b4;
-  text-shadow: 0 0 10px #ff69b4, 0 0 20px #ff69b4;
+@keyframes glitch {
+  0% { text-shadow: 2px 2px #f0f; }
+  100% { text-shadow: -2px -2px #0ff; }
+}
+
+button {
+  background: #ff69b4;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1.2em;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+  margin: 10px;
 }
 
 .her-photo {
-  width: 100px;
-  height: 100px;
-  margin: 5px;
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  margin: 10px;
+  border: 2px solid #fff;
   border-radius: 10px;
-  box-shadow: 0 0 10px #ff69b4;
+  transition: transform 0.3s ease;
+}
+
+.her-photo:hover {
+  transform: scale(1.1);
 }
 
 .cube-wrapper {
   perspective: 1000px;
-  margin-top: 30px;
+  margin: 40px auto;
+  width: 200px;
+  height: 200px;
 }
+
 .cube {
-  width: 150px;
-  height: 150px;
-  position: relative;
+  width: 100%;
+  height: 100%;
   transform-style: preserve-3d;
   animation: spin 10s infinite linear;
+  position: relative;
 }
+
 .face {
   position: absolute;
-  width: 150px;
-  height: 150px;
+  width: 200px;
+  height: 200px;
   object-fit: cover;
 }
-.front  { transform: rotateY(  0deg) translateZ(75px); }
-.back   { transform: rotateY(180deg) translateZ(75px); }
-.right  { transform: rotateY( 90deg) translateZ(75px); }
-.left   { transform: rotateY(-90deg) translateZ(75px); }
-.top    { transform: rotateX( 90deg) translateZ(75px); }
-.bottom { transform: rotateX(-90deg) translateZ(75px); }
+
+.front  { transform: rotateY(0deg) translateZ(100px); }
+.back   { transform: rotateY(180deg) translateZ(100px); }
+.right  { transform: rotateY(90deg) translateZ(100px); }
+.left   { transform: rotateY(-90deg) translateZ(100px); }
+.top    { transform: rotateX(90deg) translateZ(100px); }
+.bottom { transform: rotateX(-90deg) translateZ(100px); }
 
 @keyframes spin {
-  from { transform: rotateX(0deg) rotateY(0deg); }
-  to   { transform: rotateX(360deg) rotateY(360deg); }
+  from { transform: rotateX(0) rotateY(0); }
+  to { transform: rotateX(360deg) rotateY(360deg); }
 }
 
-.countdown {
-  font-size: 24px;
-  color: #0ff;
-  margin-bottom: 20px;
+canvas#hearts {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+}
+
+#typedLetter {
+  white-space: pre-line;
+  line-height: 1.6;
+  font-size: 1.2em;
+  padding: 20px;
+}
+
+/* QR Code */
+.qr-container {
+  margin-top: 40px;
+}
+
+#startScreen {
+  position: fixed;
+  background: black;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: white;
+  text-align: center;
+}
+
+.mouse-follower {
+  position: absolute;
+  pointer-events: none;
+  width: 10px;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  animation: fadeOut 0.8s forwards;
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    transform: scale(2);
+  }
 }
