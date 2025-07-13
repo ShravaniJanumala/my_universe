@@ -2,22 +2,19 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>To My Universe, Sai Sree</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- 🎬 Welcome Portal -->
-  <div id="welcome-screen">
+  <div class="intro" id="intro">
     <h1>Welcome, Sai Sree</h1>
-    <p>Tap to start your birthday portal</p>
     <button onclick="startPortal()">Start Portal</button>
   </div>
 
-  <!-- 🪐 Main Content -->
-  <div class="container hidden" id="main-content">
-    <h1 class="glitch typewriter">📡 Incoming Transmission from <span class="glow">Alt-You</span> to <span class="glow">Sai Sree</span></h1>
+  <div class="container hidden" id="mainContent">
+    <h1 class="glitch">📡 Incoming Transmission from <span class="glow">Alt-You</span> to <span class="glow">Sai Sree</span></h1>
     <p class="subline">Message from Alt-Verse YOU-943 to: LOVE (Sai Sree)</p>
 
     <button onclick="revealMessage()">Decrypt Message</button>
@@ -25,50 +22,48 @@
     <div id="message" class="hidden">
       <p class="love-letter" id="typedLetter"></p>
 
-      <div style="margin-top: 30px;">
+      <div class="gallery">
         <h2>💖 Her Glowing Gallery</h2>
-        <div class="gallery">
-          <img src="saisree1.jpg" class="her-photo" />
-          <img src="saisree2.jpg" class="her-photo" />
-          <img src="saisree3.jpg" class="her-photo" />
-          <img src="saisree4.jpg" class="her-photo" />
-          <img src="saisree5.jpg" class="her-photo" />
-          <img src="saisree6.jpg" class="her-photo" />
-        </div>
-
-        <!-- 🧊 3D Cube -->
-        <div class="cube-wrapper">
-          <div class="cube">
-            <img src="saisree1.jpg" class="face front">
-            <img src="saisree2.jpg" class="face back">
-            <img src="saisree3.jpg" class="face right">
-            <img src="saisree4.jpg" class="face left">
-            <img src="saisree5.jpg" class="face top">
-            <img src="saisree6.jpg" class="face bottom">
-          </div>
+        <div class="photos">
+          <img src="images/saisree1.jpg" />
+          <img src="images/saisree2.jpg" />
+          <img src="images/saisree3.jpg" />
+          <img src="images/saisree4.jpg" />
+          <img src="images/saisree5.jpg" />
+          <img src="images/saisree6.jpg" />
         </div>
       </div>
 
-      <h2>💬 Chat with Alt-You</h2>
-      <input id="userInput" placeholder="Say something..." />
-      <button onclick="chat()">Send</button>
-      <p id="botReply"></p>
+      <div class="cube-wrapper">
+        <div class="cube">
+          <img src="images/saisree1.jpg" class="face front">
+          <img src="images/saisree2.jpg" class="face back">
+          <img src="images/saisree3.jpg" class="face right">
+          <img src="images/saisree4.jpg" class="face left">
+          <img src="images/saisree5.jpg" class="face top">
+          <img src="images/saisree6.jpg" class="face bottom">
+        </div>
+      </div>
     </div>
+
+    <div id="countdown"></div>
+
+    <!-- Optional Chat -->
+    <h2>💬 Chat with Alt-You</h2>
+    <input id="userInput" placeholder="Say something..." />
+    <button onclick="chat()">Send</button>
+    <p id="botReply"></p>
   </div>
 
-  <!-- ❤️ Floating Hearts -->
-  <canvas id="hearts"></canvas>
+  <!-- Optional Audio -->
+  <audio autoplay loop>
+    <source src="assets/your-song.mp3" type="audio/mpeg">
+  </audio>
 
-  <!-- 🌈 Mouse Sparkle Trail -->
-  <div id="trail"></div>
+  <!-- Mouse Trail -->
+  <canvas id="mouseCanvas"></canvas>
 
-  <!-- 🎵 Background YouTube Music -->
-  <iframe width="0" height="0"
-    src="https://www.youtube.com/embed/AB2ACJ22fhY?autoplay=1&loop=1&playlist=AB2ACJ22fhY"
-    frameborder="0" allow="autoplay" allowfullscreen></iframe>
-
-  <!-- 📜 Scripts -->
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <!-- Script files -->
   <script src="script.js"></script>
 </body>
 </html>
