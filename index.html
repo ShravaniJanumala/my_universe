@@ -7,75 +7,71 @@
 </head>
 <body>
 
-<!-- Mouse Trail -->
-<canvas id="trail"></canvas>
-
-<!-- Welcome Screen -->
-<div id="welcomeScreen">
-  <h1>✨ Welcome, Sai Sree</h1>
-  <p>Tap to start your birthday portal</p>
-  <button onclick="startPortal()">Start Portal</button>
-</div>
-
-<!-- Main Portal -->
-<div id="mainPortal" class="hidden">
-
-  <!-- Plane Animation -->
-  <div class="plane-wrapper">
-    <img src="https://cdn-icons-png.flaticon.com/512/148/148841.png" class="plane" />
+  <!-- 🎉 Welcome Screen -->
+  <div id="welcome-screen" class="screen">
+    <h1>Welcome, Sai Sree</h1>
+    <p>Tap to start your birthday portal</p>
+    <button onclick="startPortal()">Start Portal</button>
   </div>
 
-  <div class="container">
-    <h1 class="glitch typewriter">📡 Incoming Transmission from <span class="glow">Alt-You</span> to <span class="glow">Sai Sree</span></h1>
+  <!-- 🎁 Main Portal -->
+  <div id="main-portal" class="hidden">
+    <!-- 🕊️ Paper Plane Animation -->
+    <div class="plane-wrapper">
+      <img src="https://cdn-icons-png.flaticon.com/512/148/148841.png" class="plane" />
+    </div>
 
+    <h1 class="glitch typewriter">📡 Incoming Transmission from <span class="glow">Alt-You</span> to <span class="glow">Sai Sree</span></h1>
     <p class="subline">Message from Alt-Verse YOU-943 to: LOVE (Sai Sree)</p>
+
     <button onclick="revealMessage()">Decrypt Message</button>
 
     <div id="message" class="hidden">
       <p class="love-letter" id="typedLetter"></p>
-    </div>
 
-    <!-- GALLERY -->
-    <div class="gallery-section">
-      <h2>💖 Her Glowing Gallery</h2>
-      <div class="gallery">
-        <img src="saisree1.jpg" class="her-photo">
-        <img src="saisree2.jpg" class="her-photo">
-        <img src="saisree3.jpg" class="her-photo">
-        <img src="saisree4.jpg" class="her-photo">
-        <img src="saisree5.jpg" class="her-photo">
-        <img src="saisree6.jpg" class="her-photo">
-      </div>
+      <div style="margin-top: 30px;">
+        <h2 style="color: #ff69b4;">💖 Her Glowing Gallery</h2>
+        <div class="gallery">
+          <img src="saisree1.jpg" class="her-photo">
+          <img src="saisree2.jpg" class="her-photo">
+          <img src="saisree3.jpg" class="her-photo">
+          <img src="saisree4.jpg" class="her-photo">
+          <img src="saisree5.jpg" class="her-photo">
+          <img src="saisree6.jpg" class="her-photo">
+        </div>
 
-      <!-- 3D Cube -->
-      <div class="cube-wrapper">
-        <div class="cube">
-          <img src="saisree1.jpg" class="face front">
-          <img src="saisree2.jpg" class="face back">
-          <img src="saisree3.jpg" class="face right">
-          <img src="saisree4.jpg" class="face left">
-          <img src="saisree5.jpg" class="face top">
-          <img src="saisree6.jpg" class="face bottom">
+        <!-- 🧊 3D Cube -->
+        <div class="cube-wrapper">
+          <div class="cube">
+            <img src="saisree1.jpg" class="face front">
+            <img src="saisree2.jpg" class="face back">
+            <img src="saisree3.jpg" class="face right">
+            <img src="saisree4.jpg" class="face left">
+            <img src="saisree5.jpg" class="face top">
+            <img src="saisree6.jpg" class="face bottom">
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- Countdown -->
-    <h2>🎂 Countdown to Your Next Birthday</h2>
-    <div id="countdown"></div>
+      <h2 class="countdown-title">🎂 Countdown to Your Next Birthday</h2>
+      <div id="countdown"></div>
+    </div>
   </div>
 
-  <!-- Confetti Canvas -->
-  <canvas id="confetti"></canvas>
-</div>
+  <!-- ❤️ Floating Hearts -->
+  <canvas id="hearts"></canvas>
 
-<!-- YouTube Hidden Music -->
-<iframe width="0" height="0"
-  src="https://www.youtube.com/embed/AB2ACJ22fhY?autoplay=1&loop=1&playlist=AB2ACJ22fhY&mute=1"
-  frameborder="0" allow="autoplay" allowfullscreen></iframe>
+  <!-- 🎶 YouTube Background Song -->
+  <iframe
+    width="0"
+    height="0"
+    src="https://www.youtube.com/embed/AB2ACJ22fhY?autoplay=1&loop=1&playlist=AB2ACJ22fhY"
+    frameborder="0"
+    allow="autoplay"
+    allowfullscreen>
+  </iframe>
 
-<!-- Scripts -->
-<script src="script.js"></script>
-
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
