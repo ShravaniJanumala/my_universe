@@ -70,3 +70,15 @@ input {
   background: #111;
   color: #eee;
 }
+.her-photo {
+  width: 150px;
+  height: auto;
+  margin: 10px;
+  border-radius: 15px;
+  box-shadow: 0 0 15px #ff69b4;
+  transition: transform 0.3s ease;
+}
+.her-photo:hover {
+  transform: scale(1.05);
+}
+
