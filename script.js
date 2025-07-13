@@ -1,175 +1,122 @@
-/* Base Reset */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+// script.js
+
+// Show main site after start portal
+function startPortal() {
+  document.querySelector('.start-screen').classList.add('hidden');
+  setTimeout(() => {
+    document.querySelector('.start-screen').style.display = 'none';
+  }, 1000);
 }
 
-/* Body Styling */
-body {
-  background: linear-gradient(to bottom right, #0f2027, #203a43, #2c5364);
-  color: #fff;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  overflow-x: hidden;
-  position: relative;
+// Decrypt Message Typing
+function revealMessage() {
+  const text = `In Earth-94, I wake up every morning next to you.
+In Earth-77, we run a quiet bookstore near a lake.
+In Earth-13, we code silly projects and stay up all night laughing.
+
+But in this one, I just call you “Love.”
+If I were a man, I’d marry you in every timeline.
+
+You are not just my favorite human—you are my whole universe.
+
+Happy birthday, Sai Sree.
+I’m lucky this version of me still gets to love you.`;
+
+  const output = document.getElementById("typedLetter");
+  document.getElementById("message").classList.remove("hidden");
+  output.textContent = "";
+  let i = 0;
+
+  const typer = setInterval(() => {
+    output.textContent += text[i];
+    i++;
+    if (i >= text.length) clearInterval(typer);
+  }, 40);
 }
 
-/* Start Screen */
-.start-screen {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: #000;
-  color: #fff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-  transition: opacity 1s ease-in-out;
-}
-.start-screen h1 {
-  font-size: 2.5rem;
-  margin-bottom: 20px;
-}
-.start-screen button {
-  padding: 12px 24px;
-  font-size: 1.2rem;
-  background-color: #ff69b4;
-  border: none;
-  color: #fff;
-  border-radius: 8px;
-  cursor: pointer;
-}
-.start-screen.hidden {
-  opacity: 0;
-  pointer-events: none;
+// Simple AI Chat
+function chat() {
+  const input = document.getElementById("userInput").value.toLowerCase();
+  const reply = document.getElementById("botReply");
+
+  if (input.includes("love")) {
+    reply.textContent = "I love you across all timelines.";
+  } else if (input.includes("happy")) {
+    reply.textContent = "Happiness is seeing you smile, Sai Sree.";
+  } else {
+    reply.textContent = "Alt-You is always listening 💫";
+  }
 }
 
-/* Container */
-.container {
-  padding: 40px 20px;
-  text-align: center;
-  max-width: 900px;
-  margin: auto;
+// Floating Hearts
+const canvas = document.getElementById("hearts");
+const ctx = canvas.getContext("2d");
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+let hearts = [];
+
+function Heart() {
+  this.x = Math.random() * canvas.width;
+  this.y = canvas.height + Math.random() * 100;
+  this.size = Math.random() * 8 + 2;
+  this.speedY = Math.random() * 1 + 0.5;
+  this.alpha = Math.random();
+  this.draw = function () {
+    ctx.globalAlpha = this.alpha;
+    ctx.fillStyle = "#ff69b4";
+    ctx.beginPath();
+    ctx.moveTo(this.x, this.y);
+    ctx.arc(this.x - this.size / 2, this.y - this.size / 2, this.size / 2, 0, Math.PI * 2);
+    ctx.arc(this.x + this.size / 2, this.y - this.size / 2, this.size / 2, 0, Math.PI * 2);
+    ctx.lineTo(this.x, this.y + this.size);
+    ctx.fill();
+  };
+  this.update = function () {
+    this.y -= this.speedY;
+    if (this.y < -10) this.y = canvas.height + Math.random() * 100;
+  };
 }
 
-/* Heading Glitch & Typewriter */
-.glitch {
-  font-size: 2rem;
-  color: #ff69b4;
-  animation: glitch 2s infinite;
+function handleHearts() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  while (hearts.length < 50) {
+    hearts.push(new Heart());
+  }
+  hearts.forEach((heart) => {
+    heart.update();
+    heart.draw();
+  });
+  requestAnimationFrame(handleHearts);
 }
-@keyframes glitch {
-  0% { text-shadow: 2px 2px #00ffea, -2px -2px #ff00aa; }
-  50% { text-shadow: -2px 2px #ff00aa, 2px -2px #00ffea; }
-  100% { text-shadow: 2px 2px #00ffea, -2px -2px #ff00aa; }
-}
-.typewriter {
-  overflow: hidden;
-  border-right: 2px solid #fff;
-  white-space: nowrap;
-  animation: typing 4s steps(40, end), blink 0.8s infinite;
-}
-@keyframes typing {
-  from { width: 0; }
-  to { width: 100%; }
-}
-@keyframes blink {
-  50% { border-color: transparent; }
-}
+handleHearts();
 
-/* Decrypt Message */
-#message {
-  margin-top: 30px;
-  font-size: 1.2rem;
-  line-height: 1.6;
-}
-.hidden {
-  display: none;
-}
+// Optional Mouse Trail
+let trail = [];
+document.addEventListener("mousemove", (e) => {
+  trail.push({ x: e.clientX, y: e.clientY, alpha: 1 });
+  if (trail.length > 50) trail.shift();
+});
+setInterval(() => {
+  trail.forEach((dot, i) => {
+    dot.alpha -= 0.02;
+  });
+}, 30);
+setInterval(() => {
+  trail = trail.filter((dot) => dot.alpha > 0);
+}, 60);
 
-/* Buttons */
-button {
-  margin-top: 15px;
-  padding: 10px 18px;
-  font-size: 1rem;
-  background-color: #1f8ef1;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-}
-button:hover {
-  background-color: #0d6efd;
-}
+setInterval(() => {
+  trail.forEach((dot) => {
+    ctx.globalAlpha = dot.alpha;
+    ctx.fillStyle = "#fff";
+    ctx.beginPath();
+    ctx.arc(dot.x, dot.y, 2, 0, Math.PI * 2);
+    ctx.fill();
+  });
+}, 30);
 
-/* Gallery */
-.her-photo {
-  width: 150px;
-  height: 150px;
-  object-fit: cover;
-  margin: 10px;
-  border-radius: 12px;
-  border: 2px solid #fff;
-  transition: transform 0.3s ease;
-}
-.her-photo:hover {
-  transform: scale(1.1);
-}
-
-/* Cube */
-.cube-wrapper {
-  perspective: 1000px;
-  margin-top: 40px;
-}
-.cube {
-  width: 150px;
-  height: 150px;
-  position: relative;
-  transform-style: preserve-3d;
-  animation: rotate 10s infinite linear;
-  margin: auto;
-}
-.face {
-  position: absolute;
-  width: 150px;
-  height: 150px;
-  border: 2px solid #fff;
-  border-radius: 10px;
-  object-fit: cover;
-}
-.front  { transform: rotateY(0deg) translateZ(75px); }
-.back   { transform: rotateY(180deg) translateZ(75px); }
-.right  { transform: rotateY(90deg) translateZ(75px); }
-.left   { transform: rotateY(-90deg) translateZ(75px); }
-.top    { transform: rotateX(90deg) translateZ(75px); }
-.bottom { transform: rotateX(-90deg) translateZ(75px); }
-@keyframes rotate {
-  0% { transform: rotateX(0) rotateY(0); }
-  100% { transform: rotateX(360deg) rotateY(360deg); }
-}
-
-/* Chat Input */
-input#userInput {
-  padding: 10px;
-  width: 60%;
-  border-radius: 6px;
-  border: none;
-  margin-top: 20px;
-}
-
-/* Music Note (YouTube Player hidden) */
-iframe {
-  display: none;
-}
-
-/* Floating Hearts Canvas */
-#hearts {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100vw;
-  height: 100vh;
-  pointer-events: none;
-  z-index: 1;
-}
+// Resize Canvas
+window.addEventListener("resize", () => {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+});
