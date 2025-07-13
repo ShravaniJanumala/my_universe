@@ -1,77 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>To My Universe, Sai Sree</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- START PORTAL -->
-  <div id="start-screen" class="start-screen">
-    <h1>✨ Welcome, Sai Sree ✨</h1>
+  <!-- Welcome Portal -->
+  <div class="welcome-screen" id="welcomeScreen">
+    <h1>Welcome, Sai Sree 🌌</h1>
     <p>Tap to start your birthday portal</p>
     <button onclick="startPortal()">Start Portal</button>
   </div>
 
-  <!-- MAIN CONTENT -->
-  <div id="main-content" class="hidden">
+  <!-- Main Content -->
+  <div class="container hidden" id="mainContent">
 
-    <!-- Countdown -->
-    <div id="countdown" class="countdown"></div>
+    <!-- Floating Plane -->
+    <div class="plane-wrapper">
+      <img src="https://cdn-icons-png.flaticon.com/512/148/148841.png" class="plane" />
+    </div>
 
-    <!-- Message -->
+    <!-- Transmission -->
     <h1 class="glitch typewriter">📡 Incoming Transmission from <span class="glow">Alt-You</span> to <span class="glow">Sai Sree</span></h1>
     <p class="subline">Message from Alt-Verse YOU-943 to: LOVE (Sai Sree)</p>
     <button onclick="revealMessage()">Decrypt Message</button>
 
     <div id="message" class="hidden">
-      <p class="love-letter" id="typed-text"></p>
+      <p class="love-letter" id="typedLetter">
+        In Earth-94, I wake up every morning next to you.<br>
+        In Earth-77, we run a quiet bookstore near a lake.<br>
+        In Earth-13, we code silly projects and stay up all night laughing.<br><br>
+        But in this one, I just call you “Love.”<br>
+        If I were a man, I’d marry you in every timeline.<br><br>
+        You are not just my favorite human—you are my whole universe.<br><br>
+        Happy birthday, Sai Sree.<br>
+        I’m lucky this version of me still gets to love you.
+      </p>
+    </div>
 
-      <h2>💖 Her Glowing Gallery</h2>
-      <div class="gallery">
-        <img src="saisree1.jpg" class="her-photo">
-        <img src="saisree2.jpg" class="her-photo">
-        <img src="saisree3.jpg" class="her-photo">
-        <img src="saisree4.jpg" class="her-photo">
-      </div>
+    <!-- Countdown -->
+    <div class="countdown-wrapper">
+      <h2>🎂 Countdown to Your Special Day</h2>
+      <div id="countdown"></div>
+    </div>
 
-      <div class="cube-wrapper">
-        <div class="cube">
-          <img src="saisree1.jpg" class="face front">
-          <img src="saisree2.jpg" class="face back">
-          <img src="saisree3.jpg" class="face right">
-          <img src="saisree4.jpg" class="face left">
-          <img src="saisree1.jpg" class="face top">
-          <img src="saisree2.jpg" class="face bottom">
-        </div>
-      </div>
+    <!-- Gallery -->
+    <h2 style="color: #ff69b4;">💖 Her Glowing Gallery</h2>
+    <div class="gallery">
+      <img src="saisree1.jpg" class="her-photo">
+      <img src="saisree2.jpg" class="her-photo">
+      <img src="saisree3.jpg" class="her-photo">
+      <img src="saisree4.jpg" class="her-photo">
+      <img src="saisree5.jpg" class="her-photo">
+      <img src="saisree6.jpg" class="her-photo">
+    </div>
 
-      <h2>📸 Slideshow</h2>
-      <div class="slideshow">
-        <img src="saisree1.jpg" id="slideshow-image" class="slideshow-image">
+    <!-- 3D Cube -->
+    <div class="cube-wrapper">
+      <div class="cube">
+        <img src="saisree1.jpg" class="face front">
+        <img src="saisree2.jpg" class="face back">
+        <img src="saisree3.jpg" class="face right">
+        <img src="saisree4.jpg" class="face left">
+        <img src="saisree5.jpg" class="face top">
+        <img src="saisree6.jpg" class="face bottom">
       </div>
     </div>
 
+    <!-- Chat Section -->
     <h2>💬 Chat with Alt-You</h2>
     <input id="userInput" placeholder="Say something..." />
     <button onclick="chat()">Send</button>
     <p id="botReply"></p>
 
-    <h2>📱 QR Code to Your Universe</h2>
-    <div id="qrcode"></div>
+    <!-- QR Code -->
+    <div class="qr-container">
+      <h3>📷 Scan to open this surprise anytime</h3>
+      <img src="qr.png" alt="QR Code" class="qr-code">
+    </div>
+
   </div>
 
-  <!-- 🎶 YouTube Music -->
+  <!-- Hearts Canvas -->
+  <canvas id="hearts"></canvas>
+
+  <!-- Autoplay YouTube Music -->
   <iframe width="0" height="0"
     src="https://www.youtube.com/embed/AB2ACJ22fhY?autoplay=1&loop=1&playlist=AB2ACJ22fhY"
-    frameborder="0" allow="autoplay" allowfullscreen>
-  </iframe>
+    frameborder="0"
+    allow="autoplay"
+    allowfullscreen></iframe>
 
-  <!-- ✨ Magic Mouse Trail -->
-  <canvas id="trail-canvas"></canvas>
-
+  <!-- Scripts -->
   <script src="script.js"></script>
 </body>
 </html>
