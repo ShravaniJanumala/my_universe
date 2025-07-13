@@ -1,113 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>My Universe – Sai Sree</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To My Universe, Sai Sree</title>
+  <link rel="stylesheet" href="style.css">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      font-family: 'Orbitron', sans-serif;
-      background-color: #0d0d0d;
-      color: #ffffff;
-      text-align: center;
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #0f0c29;  /* fallback for old browsers */
+      background: linear-gradient(to right, #24243e, #302b63, #0f0c29);
+      color: white;
       overflow-x: hidden;
     }
-    .welcome {
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      background: linear-gradient(to bottom right, #111, #222);
-      padding: 20px;
+
+    .container {
+      text-align: center;
+      padding: 2rem;
     }
-    .main {
-      padding: 40px 20px;
+
+    h1.glitch {
+      font-size: 2rem;
+      color: #ff66cc;
+      text-shadow: 0 0 5px #fff;
     }
-    h1, h2 { margin-bottom: 20px; color: #ff69b4; }
-    p {
-      line-height: 1.6;
-      font-size: 18px;
-      max-width: 700px;
-      margin: 10px auto;
+
+    .glow {
+      color: #00ffff;
     }
+
     button {
-      background-color: #ff69b4;
+      background-color: #ff66cc;
       border: none;
+      padding: 1rem 2rem;
+      font-size: 1rem;
       color: white;
-      padding: 12px 25px;
-      font-size: 18px;
-      border-radius: 8px;
+      margin-top: 1rem;
+      border-radius: 10px;
       cursor: pointer;
-      margin-top: 20px;
-      transition: 0.3s;
     }
-    button:hover { background-color: #ff3399; }
-    .hidden { display: none; }
-    iframe { display: none; }
+
+    .hidden {
+      display: none;
+    }
+
+    .her-photo {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 15px;
+      margin: 5px;
+      transition: transform 0.3s;
+    }
+
+    .her-photo:hover {
+      transform: scale(1.1);
+    }
 
     .cube-wrapper {
       perspective: 1000px;
-      margin: 50px auto;
-      width: 200px; height: 200px;
+      margin-top: 30px;
     }
+
     .cube {
-      width: 100%; height: 100%;
+      width: 150px;
+      height: 150px;
       position: relative;
       transform-style: preserve-3d;
-      animation: rotate 10s infinite linear;
+      animation: spin 10s infinite linear;
+      margin: auto;
     }
-    .cube img {
-      position: absolute;
-      width: 100%; height: 100%;
-      object-fit: cover;
-      border-radius: 10px;
-    }
-    .cube .front  { transform: rotateY(0deg) translateZ(100px); }
-    .cube .back   { transform: rotateY(180deg) translateZ(100px); }
-    .cube .right  { transform: rotateY(90deg) translateZ(100px); }
-    .cube .left   { transform: rotateY(-90deg) translateZ(100px); }
-    .cube .top    { transform: rotateX(90deg) translateZ(100px); }
-    .cube .bottom { transform: rotateX(-90deg) translateZ(100px); }
 
-    @keyframes rotate {
+    .face {
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+    }
+
+    .front { transform: translateZ(75px); }
+    .back { transform: rotateY(180deg) translateZ(75px); }
+    .right { transform: rotateY(90deg) translateZ(75px); }
+    .left { transform: rotateY(-90deg) translateZ(75px); }
+    .top { transform: rotateX(90deg) translateZ(75px); }
+    .bottom { transform: rotateX(-90deg) translateZ(75px); }
+
+    @keyframes spin {
       from { transform: rotateX(0deg) rotateY(0deg); }
       to { transform: rotateX(360deg) rotateY(360deg); }
     }
 
-    #countdown {
-      font-size: 24px;
-      margin-top: 20px;
-      color: #00ffcc;
-    }
-
-    #qr {
-      margin-top: 40px;
-    }
-    #qr img {
-      width: 200px;
-      border-radius: 10px;
+    canvas#hearts {
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: -1;
     }
   </style>
 </head>
 <body>
-  <!-- Welcome Screen -->
-  <div id="welcomeScreen" class="welcome">
-    <h1>Welcome, Sai Sree</h1>
-    <p>Tap to start your birthday portal</p>
-    <div id="countdown">Starting in 5...</div>
-    <button onclick="startCountdown()">Start Portal</button>
-  </div>
 
-  <!-- Main Content -->
-  <div id="mainContent" class="main hidden">
-    <h2>🛱️ Incoming Transmission from Alt-You to Sai Sree</h2>
-    <p>Message from Alt-Verse YOU-943 to: LOVE (Sai Sree)</p>
+  <div class="container">
+    <h1 class="glitch typewriter">📡 Incoming Transmission from <span class="glow">Alt-You</span> to <span class="glow">Sai Sree</span></h1>
+    <p class="subline">Message from Alt-Verse YOU-943 to: LOVE (Sai Sree)</p>
+
     <button onclick="revealMessage()">Decrypt Message</button>
+
     <div id="message" class="hidden">
+      <p id="typedLetter" class="love-letter"></p>
       <p>
         In Earth-94, I wake up every morning next to you.<br>
         In Earth-77, we run a quiet bookstore near a lake.<br>
@@ -119,45 +121,58 @@
         I’m lucky this version of me still gets to love you.
       </p>
 
+      <h2 style="color: #ff69b4;">💖 Her Glowing Gallery</h2>
+      <div style="display: flex; flex-wrap: wrap; justify-content: center;">
+        <img src="saisree1.jpg" class="her-photo">
+        <img src="saisree2.jpg" class="her-photo">
+        <img src="saisree3.jpg" class="her-photo">
+        <img src="saisree4.jpg" class="her-photo">
+        <img src="saisree5.jpg" class="her-photo">
+        <img src="saisree6.jpg" class="her-photo">
+      </div>
+
       <div class="cube-wrapper">
         <div class="cube">
-          <img src="saisree1.jpg" class="front">
-          <img src="saisree2.jpg" class="back">
-          <img src="saisree3.jpg" class="right">
-          <img src="saisree4.jpg" class="left">
-          <img src="saisree5.jpg" class="top">
-          <img src="saisree6.jpg" class="bottom">
+          <img src="saisree1.jpg" class="face front">
+          <img src="saisree2.jpg" class="face back">
+          <img src="saisree3.jpg" class="face right">
+          <img src="saisree4.jpg" class="face left">
+          <img src="saisree5.jpg" class="face top">
+          <img src="saisree6.jpg" class="face bottom">
         </div>
       </div>
-
-      <div id="qr">
-        <h2>📅 Scan to Bookmark Forever</h2>
-        <img src="https://api.qrserver.com/v1/create-qr-code/?data=https://shravanijanumala.github.io/my_universe/&size=200x200" alt="QR Code">
-      </div>
     </div>
+
+    <h2>💬 Chat with Alt-You</h2>
+    <input id="userInput" placeholder="Say something..." />
+    <button onclick="chat()">Send</button>
+    <p id="botReply"></p>
   </div>
 
-  <!-- YouTube Background Music -->
-  <iframe width="0" height="0" src="https://www.youtube.com/embed/AB2ACJ22fhY?autoplay=1&loop=1&playlist=AB2ACJ22fhY" allow="autoplay"></iframe>
+  <canvas id="hearts"></canvas>
+
+  <!-- YOUTUBE AUTOPLAY HIDDEN PLAYER -->
+  <iframe width="0" height="0"
+    src="https://www.youtube.com/embed/AB2ACJ22fhY?autoplay=1&loop=1&playlist=AB2ACJ22fhY"
+    frameborder="0"
+    allow="autoplay"
+    allowfullscreen>
+  </iframe>
 
   <script>
-    function startCountdown() {
-      let countdown = 5;
-      const countdownEl = document.getElementById("countdown");
-      const interval = setInterval(() => {
-        countdown--;
-        countdownEl.textContent = `Starting in ${countdown}...`;
-        if (countdown === 0) {
-          clearInterval(interval);
-          document.getElementById("welcomeScreen").style.display = "none";
-          document.getElementById("mainContent").classList.remove("hidden");
-        }
-      }, 1000);
-    }
-
     function revealMessage() {
       document.getElementById("message").classList.remove("hidden");
+      document.getElementById("typedLetter").innerText = "Decrypting...";
+    }
+
+    function chat() {
+      const userInput = document.getElementById("userInput").value.toLowerCase();
+      const reply = document.getElementById("botReply");
+      if (userInput.includes("love")) reply.innerText = "Alt-You says: I love you in every universe.";
+      else if (userInput.includes("birthday")) reply.innerText = "Alt-You says: This day was made for you.";
+      else reply.innerText = "Alt-You says: I'm always listening, Sai Sree.";
     }
   </script>
+
 </body>
 </html>
