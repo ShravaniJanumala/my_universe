@@ -19,7 +19,10 @@ function chat() {
   } else {
     reply.textContent = "Alt-Me: I'm still decoding that. But one thing's certain—you're perfect.";
   }
-} const canvas = document.getElementById('hearts');
+}
+
+// Floating heart animation
+const canvas = document.getElementById('hearts');
 const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
@@ -39,7 +42,6 @@ function drawHearts() {
   ctx.fillStyle = '#ff69b4';
   for (let i = 0; i < hearts.length; i++) {
     ctx.beginPath();
-    ctx.moveTo(hearts[i].x, hearts[i].y);
     ctx.arc(hearts[i].x, hearts[i].y, hearts[i].size, 0, Math.PI * 2);
     ctx.fill();
     hearts[i].y -= hearts[i].speed;
@@ -49,4 +51,3 @@ function drawHearts() {
 }
 
 drawHearts();
-
