@@ -1,6 +1,14 @@
+
 function revealMessage() {
   const message = document.getElementById('message');
   message.classList.remove('hidden');
+}
+  // 🎉 Confetti burst
+  confetti({
+    particleCount: 150,
+    spread: 70,
+    origin: { y: 0.6 }
+  });
 }
 
 // Simple chatbot logic
