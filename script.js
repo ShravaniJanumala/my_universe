@@ -1,62 +1,70 @@
 function startPortal() {
-  document.getElementById('intro').style.display = 'none';
-  document.getElementById('mainContent').classList.remove('hidden');
+  document.getElementById("start-screen").style.display = "none";
+  document.getElementById("main-content").classList.remove("hidden");
+  startCountdown();
 }
 
-function revealMessage() {
-  const text = `In Earth-94, I wake up every morning next to you.\n
-  In Earth-77, we run a quiet bookstore near a lake.\n
-  In Earth-13, we code silly projects and stay up all night laughing.\n\n
-  But in this one, I just call you “Love.”\n
-  If I were a man, I’d marry you in every timeline.\n\n
-  You are not just my favorite human—you are my whole universe.\n\n
-  Happy birthday, Sai Sree.\n
-  I’m lucky this version of me still gets to love you.`;
+// Countdown Timer
+function startCountdown() {
+  const countdown = document.getElementById("countdown");
+  const target = new Date("July 13, 2025 00:00:00").getTime();
 
-  let i = 0;
-  const speed = 30;
-  const output = document.getElementById("typedLetter");
-  const reveal = document.getElementById("message");
-  reveal.classList.remove("hidden");
+  setInterval(() => {
+    const now = new Date().getTime();
+    const diff = target - now;
 
-  function typeWriter() {
-    if (i < text.length) {
-      output.innerHTML += text.charAt(i);
-      i++;
-      setTimeout(typeWriter, speed);
+    if (diff < 0) {
+      countdown.innerHTML = "🎉 It's Time, Happy Birthday Sai Sree!";
+      return;
     }
-  }
-  typeWriter();
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
+
+    countdown.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s left to Birthday ✨`;
+  }, 1000);
 }
 
+// Chat Function
 function chat() {
-  const userText = document.getElementById("userInput").value;
+  const input = document.getElementById("userInput").value;
   const reply = document.getElementById("botReply");
-  reply.innerText = "Alt-You says: I heard you. 😌";
+
+  if (input.toLowerCase().includes("love")) {
+    reply.innerText = "Alt-You: I love you too, in every universe 💖";
+  } else {
+    reply.innerText = "Alt-You: You always make me smile.";
+  }
 }
 
-const countDownDate = new Date("July 14, 2025 00:00:00").getTime();
-setInterval(() => {
-  const now = new Date().getTime();
-  const distance = countDownDate - now;
-  if (distance < 0) {
-    document.getElementById("countdown").innerHTML = "🎉 It's your birthday!";
-    return;
-  }
-  const d = Math.floor(distance / (1000 * 60 * 60 * 24));
-  const h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  const s = Math.floor((distance % (1000 * 60)) / 1000);
-  document.getElementById("countdown").innerHTML =
-    `⏳ ${d}d ${h}h ${m}m ${s}s`;
-}, 1000);
+// Decrypt
+function revealMessage() {
+  document.getElementById("message").classList.remove("hidden");
+}
 
-// Mouse trail
-document.addEventListener("mousemove", function(e) {
-  const dot = document.createElement("div");
-  dot.className = "trail";
-  dot.style.left = `${e.pageX}px`;
-  dot.style.top = `${e.pageY}px`;
-  document.body.appendChild(dot);
-  setTimeout(() => dot.remove(), 1000);
+// Mouse Magic Trail
+const canvas = document.getElementById("trail-canvas");
+const ctx = canvas.getContext("2d");
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+let trails = [];
+
+document.addEventListener("mousemove", (e) => {
+  trails.push({ x: e.clientX, y: e.clientY, alpha: 1 });
 });
+
+function drawTrail() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  trails = trails.filter(t => t.alpha > 0.01);
+  trails.forEach(t => {
+    ctx.beginPath();
+    ctx.arc(t.x, t.y, 5, 0, 2 * Math.PI);
+    ctx.fillStyle = `rgba(255, 105, 180, ${t.alpha})`;
+    ctx.fill();
+    t.alpha -= 0.02;
+  });
+  requestAnimationFrame(drawTrail);
+}
+drawTrail();
