@@ -2,115 +2,31 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>To My Universe, Sai Sree</title>
   <link rel="stylesheet" href="style.css">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background: #0f0c29;  /* fallback for old browsers */
-      background: linear-gradient(to right, #24243e, #302b63, #0f0c29);
-      color: white;
-      overflow-x: hidden;
-    }
-
-    .container {
-      text-align: center;
-      padding: 2rem;
-    }
-
-    h1.glitch {
-      font-size: 2rem;
-      color: #ff66cc;
-      text-shadow: 0 0 5px #fff;
-    }
-
-    .glow {
-      color: #00ffff;
-    }
-
-    button {
-      background-color: #ff66cc;
-      border: none;
-      padding: 1rem 2rem;
-      font-size: 1rem;
-      color: white;
-      margin-top: 1rem;
-      border-radius: 10px;
-      cursor: pointer;
-    }
-
-    .hidden {
-      display: none;
-    }
-
-    .her-photo {
-      width: 120px;
-      height: 120px;
-      object-fit: cover;
-      border-radius: 15px;
-      margin: 5px;
-      transition: transform 0.3s;
-    }
-
-    .her-photo:hover {
-      transform: scale(1.1);
-    }
-
-    .cube-wrapper {
-      perspective: 1000px;
-      margin-top: 30px;
-    }
-
-    .cube {
-      width: 150px;
-      height: 150px;
-      position: relative;
-      transform-style: preserve-3d;
-      animation: spin 10s infinite linear;
-      margin: auto;
-    }
-
-    .face {
-      position: absolute;
-      width: 150px;
-      height: 150px;
-      object-fit: cover;
-    }
-
-    .front { transform: translateZ(75px); }
-    .back { transform: rotateY(180deg) translateZ(75px); }
-    .right { transform: rotateY(90deg) translateZ(75px); }
-    .left { transform: rotateY(-90deg) translateZ(75px); }
-    .top { transform: rotateX(90deg) translateZ(75px); }
-    .bottom { transform: rotateX(-90deg) translateZ(75px); }
-
-    @keyframes spin {
-      from { transform: rotateX(0deg) rotateY(0deg); }
-      to { transform: rotateX(360deg) rotateY(360deg); }
-    }
-
-    canvas#hearts {
-      position: fixed;
-      top: 0;
-      left: 0;
-      pointer-events: none;
-      z-index: -1;
-    }
-  </style>
 </head>
 <body>
 
-  <div class="container">
-    <h1 class="glitch typewriter">📡 Incoming Transmission from <span class="glow">Alt-You</span> to <span class="glow">Sai Sree</span></h1>
-    <p class="subline">Message from Alt-Verse YOU-943 to: LOVE (Sai Sree)</p>
+  <!-- START PORTAL -->
+  <div id="start-screen" class="start-screen">
+    <h1>✨ Welcome, Sai Sree ✨</h1>
+    <p>Tap to start your birthday portal</p>
+    <button onclick="startPortal()">Start Portal</button>
+  </div>
 
+  <!-- MAIN CONTENT -->
+  <div id="main-content" class="hidden">
+
+    <!-- Countdown -->
+    <div id="countdown" class="countdown"></div>
+
+    <h1 class="glitch typewriter">📡 Incoming Transmission from <span class="glow">Alt-You</span> to <span class="glow">Sai Sree</span></h1>
+
+    <p class="subline">Message from Alt-Verse YOU-943 to: LOVE (Sai Sree)</p>
     <button onclick="revealMessage()">Decrypt Message</button>
 
     <div id="message" class="hidden">
-      <p id="typedLetter" class="love-letter"></p>
-      <p>
+      <p class="love-letter">
         In Earth-94, I wake up every morning next to you.<br>
         In Earth-77, we run a quiet bookstore near a lake.<br>
         In Earth-13, we code silly projects and stay up all night laughing.<br><br>
@@ -121,8 +37,8 @@
         I’m lucky this version of me still gets to love you.
       </p>
 
-      <h2 style="color: #ff69b4;">💖 Her Glowing Gallery</h2>
-      <div style="display: flex; flex-wrap: wrap; justify-content: center;">
+      <h2>💖 Her Glowing Gallery</h2>
+      <div class="gallery">
         <img src="saisree1.jpg" class="her-photo">
         <img src="saisree2.jpg" class="her-photo">
         <img src="saisree3.jpg" class="her-photo">
@@ -149,30 +65,15 @@
     <p id="botReply"></p>
   </div>
 
-  <canvas id="hearts"></canvas>
-
-  <!-- YOUTUBE AUTOPLAY HIDDEN PLAYER -->
+  <!-- 🎶 Hidden YouTube Music -->
   <iframe width="0" height="0"
     src="https://www.youtube.com/embed/AB2ACJ22fhY?autoplay=1&loop=1&playlist=AB2ACJ22fhY"
-    frameborder="0"
-    allow="autoplay"
-    allowfullscreen>
+    frameborder="0" allow="autoplay" allowfullscreen>
   </iframe>
 
-  <script>
-    function revealMessage() {
-      document.getElementById("message").classList.remove("hidden");
-      document.getElementById("typedLetter").innerText = "Decrypting...";
-    }
+  <!-- ✨ Magic Mouse Trail -->
+  <canvas id="trail-canvas"></canvas>
 
-    function chat() {
-      const userInput = document.getElementById("userInput").value.toLowerCase();
-      const reply = document.getElementById("botReply");
-      if (userInput.includes("love")) reply.innerText = "Alt-You says: I love you in every universe.";
-      else if (userInput.includes("birthday")) reply.innerText = "Alt-You says: This day was made for you.";
-      else reply.innerText = "Alt-You says: I'm always listening, Sai Sree.";
-    }
-  </script>
-
+  <script src="script.js"></script>
 </body>
 </html>
