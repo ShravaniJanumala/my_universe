@@ -1,140 +1,244 @@
-/* style.css */
-body {
+/* General Reset */
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: radial-gradient(circle, #0f2027, #203a43, #2c5364);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
-  color: white;
+  color: #fff;
   overflow-x: hidden;
+  position: relative;
 }
 
 .container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 20px;
   text-align: center;
-  padding: 30px;
 }
 
-h1.glitch {
-  font-size: 2em;
-  color: #fff;
-  text-shadow: 0 0 5px #ff00ff, 0 0 10px #00ffff;
-  animation: glitch 1s infinite alternate;
+/* Welcome Screen */
+#welcomeScreen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+  background: linear-gradient(to right, #141e30, #243b55);
+  color: white;
 }
 
-@keyframes glitch {
-  0% { text-shadow: 2px 2px #f0f; }
-  100% { text-shadow: -2px -2px #0ff; }
+#welcomeScreen h1 {
+  font-size: 3em;
+  margin-bottom: 20px;
+  animation: glow 1.5s ease-in-out infinite alternate;
 }
 
-button {
-  background: #ff69b4;
+#welcomeScreen button {
+  padding: 12px 24px;
+  font-size: 18px;
   border: none;
-  padding: 10px 20px;
-  font-size: 1.2em;
+  background: #ff4081;
   color: white;
   border-radius: 10px;
   cursor: pointer;
-  margin: 10px;
+  box-shadow: 0 0 10px #ff4081;
 }
 
+@keyframes glow {
+  from {
+    text-shadow: 0 0 10px #ff4081, 0 0 20px #ff4081;
+  }
+  to {
+    text-shadow: 0 0 20px #ff4081, 0 0 30px #ff4081;
+  }
+}
+
+/* Typewriter + Glitch */
+.typewriter {
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 0.15em solid pink;
+  animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+  font-size: 1.6rem;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: pink; }
+}
+
+.glitch {
+  color: white;
+  position: relative;
+  animation: glitch 1s infinite;
+}
+
+@keyframes glitch {
+  0% {
+    text-shadow: 2px 2px red;
+  }
+  20% {
+    text-shadow: -2px 2px blue;
+  }
+  40% {
+    text-shadow: 2px -2px green;
+  }
+  60% {
+    text-shadow: -2px -2px purple;
+  }
+  80% {
+    text-shadow: 2px 2px orange;
+  }
+  100% {
+    text-shadow: 0 0 white;
+  }
+}
+
+/* Decrypt Button */
+button {
+  background: #ff4081;
+  border: none;
+  padding: 10px 20px;
+  color: white;
+  font-size: 16px;
+  margin-top: 20px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* Hidden Message */
+.hidden {
+  display: none;
+}
+
+#typedLetter {
+  white-space: pre-line;
+  line-height: 1.6;
+  font-size: 18px;
+  margin-top: 20px;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+}
+
+/* Glowing Gallery */
 .her-photo {
   width: 120px;
   height: 120px;
-  object-fit: cover;
   margin: 10px;
+  border-radius: 15px;
+  object-fit: cover;
   border: 2px solid #fff;
-  border-radius: 10px;
-  transition: transform 0.3s ease;
+  box-shadow: 0 0 15px #ff69b4;
+  transition: transform 0.3s;
 }
 
 .her-photo:hover {
   transform: scale(1.1);
 }
 
+/* Cube */
 .cube-wrapper {
+  margin-top: 40px;
   perspective: 1000px;
-  margin: 40px auto;
-  width: 200px;
-  height: 200px;
 }
 
 .cube {
-  width: 100%;
-  height: 100%;
-  transform-style: preserve-3d;
-  animation: spin 10s infinite linear;
+  width: 150px;
+  height: 150px;
   position: relative;
+  transform-style: preserve-3d;
+  animation: rotateCube 12s infinite linear;
+  margin: 0 auto;
 }
 
 .face {
   position: absolute;
-  width: 200px;
-  height: 200px;
+  width: 150px;
+  height: 150px;
   object-fit: cover;
+  border: 2px solid white;
 }
 
-.front  { transform: rotateY(0deg) translateZ(100px); }
-.back   { transform: rotateY(180deg) translateZ(100px); }
-.right  { transform: rotateY(90deg) translateZ(100px); }
-.left   { transform: rotateY(-90deg) translateZ(100px); }
-.top    { transform: rotateX(90deg) translateZ(100px); }
-.bottom { transform: rotateX(-90deg) translateZ(100px); }
+.front { transform: translateZ(75px); }
+.back { transform: rotateY(180deg) translateZ(75px); }
+.right { transform: rotateY(90deg) translateZ(75px); }
+.left { transform: rotateY(-90deg) translateZ(75px); }
+.top { transform: rotateX(90deg) translateZ(75px); }
+.bottom { transform: rotateX(-90deg) translateZ(75px); }
 
-@keyframes spin {
-  from { transform: rotateX(0) rotateY(0); }
-  to { transform: rotateX(360deg) rotateY(360deg); }
+@keyframes rotateCube {
+  0% { transform: rotateX(0) rotateY(0); }
+  100% { transform: rotateX(360deg) rotateY(360deg); }
 }
 
+/* Hearts Canvas */
 canvas#hearts {
   position: fixed;
   top: 0;
   left: 0;
   pointer-events: none;
-  width: 100vw;
-  height: 100vh;
-  z-index: 0;
+  z-index: -1;
 }
 
-#typedLetter {
-  white-space: pre-line;
-  line-height: 1.6;
-  font-size: 1.2em;
-  padding: 20px;
+/* Countdown */
+#countdown {
+  font-size: 24px;
+  margin: 20px;
+  font-weight: bold;
+  color: #ffccff;
 }
 
 /* QR Code */
-.qr-container {
+.qr-wrapper {
   margin-top: 40px;
 }
 
-#startScreen {
-  position: fixed;
-  background: black;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  width: 100vw;
-  z-index: 999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  color: white;
-  text-align: center;
+.qr-wrapper img {
+  width: 150px;
+  height: 150px;
+  border: 4px solid #fff;
+  border-radius: 15px;
 }
 
-.mouse-follower {
+/* Plane */
+.plane-wrapper {
   position: absolute;
-  pointer-events: none;
-  width: 10px;
-  height: 10px;
-  background: rgba(255, 255, 255, 0.6);
-  border-radius: 50%;
-  animation: fadeOut 0.8s forwards;
+  top: 50px;
+  left: -100px;
+  animation: flyPlane 10s infinite linear;
 }
 
-@keyframes fadeOut {
-  to {
-    opacity: 0;
-    transform: scale(2);
-  }
+.plane {
+  width: 60px;
+}
+
+@keyframes flyPlane {
+  0% { transform: translateX(0) rotate(0deg); }
+  100% { transform: translateX(120vw) rotate(360deg); }
+}
+
+/* Chatbox */
+#userInput {
+  padding: 10px;
+  width: 80%;
+  margin: 10px;
+  border-radius: 8px;
+  border: none;
+  font-size: 16px;
+}
+
+#botReply {
+  margin-top: 15px;
+  font-style: italic;
+  color: #ffd1dc;
 }
