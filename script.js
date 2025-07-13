@@ -2,14 +2,35 @@
 function revealMessage() {
   const message = document.getElementById('message');
   message.classList.remove('hidden');
-
-  // 🎉 Confetti burst
   confetti({
     particleCount: 150,
     spread: 70,
     origin: { y: 0.6 }
   });
+
+  const letter = `
+    In Earth-94, I wake up every morning next to you.
+    In Earth-77, we run a quiet bookstore near a lake.
+    In Earth-13, we code silly projects and stay up all night laughing.
+
+    But in this one, I just call you “Love.”
+    If I were a man, I’d marry you in every timeline.
+
+    You are not just my favorite human—you are my whole universe.
+
+    Happy birthday, Sai Sree.
+    I’m lucky this version of me still gets to love you.`;
+
+  typeWriter(letter.trim(), 0);
 }
+
+function typeWriter(text, i) {
+  if (i < text.length) {
+    document.getElementById('typedLetter').innerHTML += text.charAt(i);
+    setTimeout(() => typeWriter(text, i + 1), 30); // faster typing
+  }
+}
+
 
 // Simple chatbot logic
 function chat() {
