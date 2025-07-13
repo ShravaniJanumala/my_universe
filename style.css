@@ -97,3 +97,62 @@ input {
   pointer-events: none;
   z-index: 0;
 }
+/* ✈️ Paper Plane */
+.plane-wrapper {
+  position: fixed;
+  top: 40%;
+  left: -100px;
+  z-index: 5;
+  animation: fly 6s ease-in-out 1;
+}
+
+.plane {
+  width: 60px;
+  transform: rotate(10deg);
+}
+
+@keyframes fly {
+  0% { left: -100px; top: 40%; }
+  50% { left: 50%; top: 30%; }
+  100% { left: 120%; top: 50%; opacity: 0; }
+}
+
+/* 🌠 Shooting stars */
+body::after {
+  content: "";
+  position: fixed;
+  width: 2px;
+  height: 100vh;
+  background: linear-gradient(#fff, transparent);
+  top: 0;
+  left: 50%;
+  animation: stars 2s linear infinite;
+  opacity: 0.1;
+  pointer-events: none;
+}
+
+@keyframes stars {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(100vh); }
+}
+
+/* ⌨️ Typewriter effect */
+.typewriter {
+  overflow: hidden;
+  border-right: .15em solid #00ffe1;
+  white-space: nowrap;
+  margin: 0 auto;
+  letter-spacing: .15em;
+  animation: typing 3.5s steps(30, end), blink-caret .75s step-end infinite;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: #00ffe1; }
+}
+
