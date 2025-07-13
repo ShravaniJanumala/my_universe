@@ -1,56 +1,90 @@
 function startPortal() {
-  document.getElementById('welcome-screen').style.display = 'none';
-  document.getElementById('main-portal').style.display = 'block';
+  document.getElementById("welcome-screen").classList.add("hidden");
+  document.getElementById("main-content").classList.remove("hidden");
+  confetti();
 }
 
 function revealMessage() {
-  const text = `In Earth-94, I wake up every morning next to you.\nIn Earth-77, we run a quiet bookstore near a lake.\nIn Earth-13, we code silly projects and stay up all night laughing.\n\nBut in this one, I just call you “Love.”\nIf I were a man, I’d marry you in every timeline.\n\nYou are not just my favorite human—you are my whole universe.\n\nHappy birthday, Sai Sree.\nI’m lucky this version of me still gets to love you.`;
+  const message = `In Earth-94, I wake up every morning next to you.
+In Earth-77, we run a quiet bookstore near a lake.
+In Earth-13, we code silly projects and stay up all night laughing.
 
-  const typedLetter = document.getElementById('typedLetter');
-  document.getElementById('message').style.display = 'block';
-  typedLetter.textContent = '';
+But in this one, I just call you “Love.”
+If I were a man, I’d marry you in every timeline.
+
+You are not just my favorite human—you are my whole universe.
+
+Happy birthday, Sai Sree.
+I’m lucky this version of me still gets to love you.`;
 
   let index = 0;
+  const element = document.getElementById("typedLetter");
+  element.innerHTML = "";
+  document.getElementById("message").classList.remove("hidden");
+
   const interval = setInterval(() => {
-    typedLetter.textContent += text[index];
-    index++;
-    if (index >= text.length) clearInterval(interval);
-  }, 50);
+    element.innerHTML += message[index++];
+    if (index >= message.length) clearInterval(interval);
+  }, 30);
 
   confetti();
 }
 
-// 🎉 Confetti
-function confetti() {
-  confettiLib({
-    particleCount: 200,
-    spread: 100,
-    origin: { y: 0.6 }
+// Simple chatbot
+function chat() {
+  const input = document.getElementById("userInput").value.toLowerCase();
+  const reply = document.getElementById("botReply");
+
+  if (input.includes("hi")) {
+    reply.textContent = "Hi love! I'm always with you 💕";
+  } else if (input.includes("miss")) {
+    reply.textContent = "I miss you more than stars miss the moon 🌙";
+  } else {
+    reply.textContent = "I'm listening, always 💫";
+  }
+}
+
+// Floating hearts
+const canvas = document.getElementById("hearts");
+const ctx = canvas.getContext("2d");
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let hearts = [];
+for (let i = 0; i < 100; i++) {
+  hearts.push({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    size: Math.random() * 5 + 2,
+    speed: Math.random() * 1 + 0.5
   });
 }
 
-// 🎂 Countdown Timer
-const countdownTarget = new Date("July 13, 2025 00:00:00").getTime();
-const countdownElement = document.getElementById('countdown');
+function drawHearts() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  hearts.forEach(heart => {
+    ctx.beginPath();
+    ctx.arc(heart.x, heart.y, heart.size, 0, Math.PI * 2);
+    ctx.fillStyle = "#ff69b4";
+    ctx.fill();
 
-setInterval(() => {
-  const now = new Date().getTime();
-  const distance = countdownTarget - now;
+    heart.y -= heart.speed;
+    if (heart.y < 0) {
+      heart.y = canvas.height;
+      heart.x = Math.random() * canvas.width;
+    }
+  });
+  requestAnimationFrame(drawHearts);
+}
 
-  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  const hrs = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  const mins = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  const secs = Math.floor((distance % (1000 * 60)) / 1000);
+drawHearts();
 
-  countdownElement.innerHTML = `${days}d ${hrs}h ${mins}m ${secs}s`;
-}, 1000);
-
-// 💫 Mouse Trail (optional)
-document.addEventListener('mousemove', function(e) {
-  const sparkle = document.createElement('div');
-  sparkle.className = 'sparkle';
-  sparkle.style.left = e.pageX + 'px';
-  sparkle.style.top = e.pageY + 'px';
-  document.body.appendChild(sparkle);
-  setTimeout(() => sparkle.remove(), 500);
+// Mouse trail
+document.addEventListener("mousemove", (e) => {
+  const trail = document.createElement("div");
+  trail.classList.add("trail-dot");
+  trail.style.left = e.pageX + "px";
+  trail.style.top = e.pageY + "px";
+  document.body.appendChild(trail);
+  setTimeout(() => trail.remove(), 100);
 });
