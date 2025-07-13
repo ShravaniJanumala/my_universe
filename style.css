@@ -4,6 +4,8 @@ body {
   font-family: 'Courier New', monospace;
   text-align: center;
   padding: 50px 20px;
+  margin: 0;
+  overflow-x: hidden;
 }
 
 .container {
@@ -14,6 +16,8 @@ body {
   border: 1px solid #444;
   border-radius: 16px;
   box-shadow: 0 0 12px rgba(0,255,255,0.2);
+  position: relative;
+  z-index: 1;
 }
 
 h1.glitch {
@@ -70,6 +74,7 @@ input {
   background: #111;
   color: #eee;
 }
+
 .her-photo {
   width: 120px;
   height: 120px;
@@ -79,18 +84,16 @@ input {
   box-shadow: 0 0 12px #ff69b4;
   transition: 0.3s ease-in-out;
 }
+
 .her-photo:hover {
   transform: scale(1.05);
-} #hearts {
+}
+
+/* Floating Hearts Canvas */
+#hearts {
   position: fixed;
   top: 0;
   left: 0;
   pointer-events: none;
   z-index: 0;
 }
-
-
-
-
-
-
