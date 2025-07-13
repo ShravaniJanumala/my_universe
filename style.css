@@ -1,77 +1,107 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>To My Universe, Sai Sree</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #0d0d0d;
+  color: white;
+  overflow-x: hidden;
+}
 
-  <!-- 🎉 Welcome Screen -->
-  <div id="welcome-screen" class="screen">
-    <h1>Welcome, Sai Sree</h1>
-    <p>Tap to start your birthday portal</p>
-    <button onclick="startPortal()">Start Portal</button>
-  </div>
+h1, h2 {
+  text-align: center;
+}
 
-  <!-- 🎁 Main Portal -->
-  <div id="main-portal" class="hidden">
-    <!-- 🕊️ Paper Plane Animation -->
-    <div class="plane-wrapper">
-      <img src="https://cdn-icons-png.flaticon.com/512/148/148841.png" class="plane" />
-    </div>
+button {
+  padding: 10px 20px;
+  margin: 10px;
+  background: #ff69b4;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
 
-    <h1 class="glitch typewriter">📡 Incoming Transmission from <span class="glow">Alt-You</span> to <span class="glow">Sai Sree</span></h1>
-    <p class="subline">Message from Alt-Verse YOU-943 to: LOVE (Sai Sree)</p>
+.container {
+  padding: 20px;
+  text-align: center;
+}
 
-    <button onclick="revealMessage()">Decrypt Message</button>
+.glow {
+  color: #ff69b4;
+  text-shadow: 0 0 10px #ff69b4;
+}
 
-    <div id="message" class="hidden">
-      <p class="love-letter" id="typedLetter"></p>
+.hidden {
+  display: none;
+}
 
-      <div style="margin-top: 30px;">
-        <h2 style="color: #ff69b4;">💖 Her Glowing Gallery</h2>
-        <div class="gallery">
-          <img src="saisree1.jpg" class="her-photo">
-          <img src="saisree2.jpg" class="her-photo">
-          <img src="saisree3.jpg" class="her-photo">
-          <img src="saisree4.jpg" class="her-photo">
-          <img src="saisree5.jpg" class="her-photo">
-          <img src="saisree6.jpg" class="her-photo">
-        </div>
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
 
-        <!-- 🧊 3D Cube -->
-        <div class="cube-wrapper">
-          <div class="cube">
-            <img src="saisree1.jpg" class="face front">
-            <img src="saisree2.jpg" class="face back">
-            <img src="saisree3.jpg" class="face right">
-            <img src="saisree4.jpg" class="face left">
-            <img src="saisree5.jpg" class="face top">
-            <img src="saisree6.jpg" class="face bottom">
-          </div>
-        </div>
-      </div>
+.her-photo {
+  width: 120px;
+  height: 120px;
+  border-radius: 10px;
+  object-fit: cover;
+}
 
-      <h2 class="countdown-title">🎂 Countdown to Your Next Birthday</h2>
-      <div id="countdown"></div>
-    </div>
-  </div>
+/* 💠 Cube */
+.cube-wrapper {
+  perspective: 800px;
+  margin-top: 40px;
+}
 
-  <!-- ❤️ Floating Hearts -->
-  <canvas id="hearts"></canvas>
+.cube {
+  width: 150px;
+  height: 150px;
+  position: relative;
+  transform-style: preserve-3d;
+  animation: rotate 10s infinite linear;
+  margin: auto;
+}
 
-  <!-- 🎶 YouTube Background Song -->
-  <iframe
-    width="0"
-    height="0"
-    src="https://www.youtube.com/embed/AB2ACJ22fhY?autoplay=1&loop=1&playlist=AB2ACJ22fhY"
-    frameborder="0"
-    allow="autoplay"
-    allowfullscreen>
-  </iframe>
+.face {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+}
 
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-  <script src="script.js"></script>
-</body>
-</html>
+.front  { transform: rotateY(  0deg) translateZ(75px); }
+.back   { transform: rotateY(180deg) translateZ(75px); }
+.right  { transform: rotateY( 90deg) translateZ(75px); }
+.left   { transform: rotateY(-90deg) translateZ(75px); }
+.top    { transform: rotateX( 90deg) translateZ(75px); }
+.bottom { transform: rotateX(-90deg) translateZ(75px); }
+
+@keyframes rotate {
+  from { transform: rotateX(0) rotateY(0); }
+  to   { transform: rotateX(360deg) rotateY(360deg); }
+}
+
+/* Portal welcome screen */
+#welcome-screen {
+  text-align: center;
+  padding-top: 100px;
+}
+
+#hearts {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+#trail {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ff69b4;
+  pointer-events: none;
+  z-index: 9999;
+}
