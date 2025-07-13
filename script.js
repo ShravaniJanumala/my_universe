@@ -92,4 +92,14 @@ document.addEventListener('mousemove', function(e) {
   document.body.appendChild(sparkle);
   setTimeout(() => sparkle.remove(), 1000);
 });
+// Mouse glow trail
+document.addEventListener('mousemove', (e) => {
+  const star = document.createElement('div');
+  star.className = 'mouse-star';
+  star.style.left = `${e.pageX}px`;
+  star.style.top = `${e.pageY}px`;
+  document.body.appendChild(star);
+  setTimeout(() => star.remove(), 500);
+});
+
 
