@@ -1,8 +1,8 @@
-
+// Reveal the message
 function revealMessage() {
   const message = document.getElementById('message');
   message.classList.remove('hidden');
-}
+
   // 🎉 Confetti burst
   confetti({
     particleCount: 150,
