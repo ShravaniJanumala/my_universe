@@ -19,4 +19,34 @@ function chat() {
   } else {
     reply.textContent = "Alt-Me: I'm still decoding that. But one thing's certain—you're perfect.";
   }
+} const canvas = document.getElementById('hearts');
+const ctx = canvas.getContext('2d');
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let hearts = [];
+for (let i = 0; i < 30; i++) {
+  hearts.push({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    size: Math.random() * 6 + 2,
+    speed: Math.random() * 1 + 0.5
+  });
 }
+
+function drawHearts() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = '#ff69b4';
+  for (let i = 0; i < hearts.length; i++) {
+    ctx.beginPath();
+    ctx.moveTo(hearts[i].x, hearts[i].y);
+    ctx.arc(hearts[i].x, hearts[i].y, hearts[i].size, 0, Math.PI * 2);
+    ctx.fill();
+    hearts[i].y -= hearts[i].speed;
+    if (hearts[i].y < 0) hearts[i].y = canvas.height;
+  }
+  requestAnimationFrame(drawHearts);
+}
+
+drawHearts();
+
