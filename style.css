@@ -209,6 +209,11 @@ body::after {
   from { transform: rotateX(0) rotateY(0); }
   to { transform: rotateX(360deg) rotateY(360deg); }
 }
+.glow {
+  color: #ff69b4;
+  text-shadow: 0 0 10px #ff69b4, 0 0 20px #ff1493;
+  font-weight: bold;
+}
 
 
 
