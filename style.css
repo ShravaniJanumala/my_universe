@@ -71,14 +71,16 @@ input {
   color: #eee;
 }
 .her-photo {
-  width: 150px;
-  height: auto;
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
   margin: 10px;
-  border-radius: 15px;
-  box-shadow: 0 0 15px #ff69b4;
-  transition: transform 0.3s ease;
+  border-radius: 20px;
+  box-shadow: 0 0 10px #ff69b4;
 }
+
 .her-photo:hover {
   transform: scale(1.05);
 }
+
 
