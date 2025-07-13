@@ -1,82 +1,80 @@
-/* style.css */
-
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Sacramento&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Pacifico&display=swap');
 
 body {
   margin: 0;
   padding: 0;
-  background: radial-gradient(#0f0f1b, #000);
   font-family: 'Orbitron', sans-serif;
+  background: linear-gradient(to bottom, #000010, #1a0025);
   color: #fff;
   overflow-x: hidden;
 }
 
 .container {
+  max-width: 800px;
+  margin: auto;
+  padding: 40px 20px;
   text-align: center;
-  padding: 60px 20px;
 }
 
 h1.glitch {
-  font-size: 2em;
-  color: #fff;
-  animation: glitch 2s infinite;
+  font-size: 2.5rem;
+  position: relative;
+  animation: glitch 1s infinite;
+}
+
+@keyframes glitch {
+  0% { text-shadow: 2px 2px #f0f, -2px -2px #0ff; }
+  50% { text-shadow: -2px 2px #0ff, 2px -2px #f0f; }
+  100% { text-shadow: 2px -2px #f0f, -2px 2px #0ff; }
 }
 
 .glow {
   color: #ff69b4;
-  text-shadow: 0 0 10px #ff69b4, 0 0 20px #ff69b4;
-}
-
-.subline {
-  margin: 20px 0;
-  color: #ccc;
+  text-shadow: 0 0 8px #ff69b4, 0 0 16px #ff1493;
 }
 
 button {
-  background-color: #ff69b4;
+  padding: 10px 20px;
+  background: #ff69b4;
   border: none;
-  padding: 12px 24px;
-  color: #fff;
-  font-size: 1em;
-  border-radius: 12px;
+  border-radius: 25px;
+  color: white;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  margin-top: 20px;
+  font-size: 1rem;
+  transition: transform 0.2s;
 }
 
 button:hover {
-  background-color: #ff1493;
+  transform: scale(1.1);
 }
 
-#message {
-  margin-top: 30px;
-  font-family: 'Sacramento', cursive;
-  font-size: 1.5em;
-  white-space: pre-line;
-  color: #fff8dc;
-}
-
-.hidden {
-  display: none;
+.love-letter {
+  font-family: 'Pacifico', cursive;
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: #ffe3f5;
+  margin-top: 20px;
 }
 
 .her-photo {
-  width: 150px;
-  height: 150px;
-  object-fit: cover;
-  margin: 10px;
+  width: 120px;
+  height: 120px;
   border-radius: 20px;
-  box-shadow: 0 0 10px #ff69b4;
-  transition: transform 0.3s ease;
+  margin: 10px;
+  object-fit: cover;
+  box-shadow: 0 4px 8px rgba(255, 105, 180, 0.6);
+  transition: transform 0.3s;
 }
 
 .her-photo:hover {
   transform: scale(1.1);
 }
 
-/* Cube 3D */
+/* Cube Style */
 .cube-wrapper {
   perspective: 1000px;
-  margin-top: 40px;
+  margin: 30px auto;
 }
 
 .cube {
@@ -85,36 +83,67 @@ button:hover {
   position: relative;
   transform-style: preserve-3d;
   animation: spin 10s infinite linear;
-  margin: auto;
 }
 
 .face {
   position: absolute;
   width: 150px;
   height: 150px;
-  border: 2px solid #ff69b4;
   border-radius: 20px;
   object-fit: cover;
 }
 
-.front  { transform: rotateY(  0deg) translateZ(75px); }
+.front  { transform: rotateY(0deg) translateZ(75px); }
 .back   { transform: rotateY(180deg) translateZ(75px); }
-.right  { transform: rotateY( 90deg) translateZ(75px); }
+.right  { transform: rotateY(90deg) translateZ(75px); }
 .left   { transform: rotateY(-90deg) translateZ(75px); }
-.top    { transform: rotateX( 90deg) translateZ(75px); }
+.top    { transform: rotateX(90deg) translateZ(75px); }
 .bottom { transform: rotateX(-90deg) translateZ(75px); }
 
 @keyframes spin {
-  from { transform: rotateX(0) rotateY(0); }
-  to   { transform: rotateX(360deg) rotateY(360deg); }
+  from { transform: rotateY(0deg) rotateX(0deg); }
+  to   { transform: rotateY(360deg) rotateX(360deg); }
+}
+
+/* Plane Animation */
+.plane-wrapper {
+  position: fixed;
+  top: 10%;
+  left: -100px;
+  animation: flyplane 15s linear infinite;
+  z-index: 1;
+}
+
+.plane {
+  width: 50px;
+}
+
+@keyframes flyplane {
+  0% { left: -100px; top: 10%; }
+  50% { top: 5%; }
+  100% { left: 110%; top: 10%; }
 }
 
 /* Countdown Timer */
 #countdown {
-  font-size: 2em;
-  color: #00ffcc;
-  margin-top: 30px;
-  font-family: 'Orbitron', monospace;
+  font-size: 1.5rem;
+  color: #ffb6c1;
+  margin: 20px 0;
+}
+
+/* Chat Section */
+input#userInput {
+  padding: 10px;
+  border: 2px solid #ff69b4;
+  border-radius: 15px;
+  width: 70%;
+  margin-top: 15px;
+}
+
+#botReply {
+  margin-top: 15px;
+  color: #ffc0cb;
+  font-style: italic;
 }
 
 /* Mouse Trail */
@@ -122,17 +151,26 @@ button:hover {
   width: 6px;
   height: 6px;
   background: #ff69b4;
-  position: absolute;
   border-radius: 50%;
+  position: absolute;
   pointer-events: none;
-  opacity: 0.7;
-  z-index: 999;
   animation: fadeOut 1s forwards;
+  z-index: 999;
 }
 
 @keyframes fadeOut {
   to {
     opacity: 0;
-    transform: scale(2);
+    transform: scale(0);
   }
+}
+
+/* Hidden initially */
+.hidden {
+  display: none;
+}
+
+/* Smooth transitions */
+* {
+  transition: all 0.3s ease;
 }
