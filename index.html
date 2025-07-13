@@ -4,76 +4,215 @@
   <meta charset="UTF-8">
   <title>To My Universe, Sai Sree</title>
   <link rel="stylesheet" href="style.css">
-</head>
+  <style>
+    body {
+      background: #000;
+      color: #fff;
+      font-family: 'Courier New', monospace;
+      overflow-x: hidden;
+      margin: 0;
+    }
 
+    .container {
+      max-width: 700px;
+      margin: auto;
+      padding: 40px 20px;
+      z-index: 2;
+      position: relative;
+      text-align: center;
+    }
+
+    .glow {
+      color: #ff69b4;
+      text-shadow: 0 0 10px #ff69b4;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .love-letter {
+      font-size: 18px;
+      text-align: left;
+      margin-top: 20px;
+      white-space: pre-line;
+    }
+
+    .starfield {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: #000;
+      z-index: 0;
+    }
+
+    .toast {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #222;
+      padding: 15px 25px;
+      border-radius: 10px;
+      color: #ffccff;
+      font-size: 18px;
+      box-shadow: 0 0 15px #ff69b4;
+      z-index: 999;
+      animation: fadeOut 5s forwards;
+    }
+
+    @keyframes fadeOut {
+      0% { opacity: 1; }
+      80% { opacity: 1; }
+      100% { opacity: 0; top: 0px; }
+    }
+
+    .star-button {
+      margin-top: 20px;
+      background: #5500ff;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .star-button:hover {
+      background: #7a00ff;
+    }
+  </style>
+</head>
 <body>
 
-  <!-- 🕊️ Paper Plane Animation -->
-  <div class="plane-wrapper">
-    <img src="https://cdn-icons-png.flaticon.com/512/148/148841.png" class="plane" />
-  </div>
+<!-- 🌠 Starfield Background -->
+<canvas id="starCanvas" class="starfield"></canvas>
 
-  <div class="container">
-    <h1 class="glitch typewriter">📡 Incoming Transmission from <span class="glow">Alt-You</span> to <span class="glow">Sai Sree</span></h1>
+<!-- ✨ Birthday Toast -->
+<div class="toast">✨ Happy Birthday Sai Sree — You are Stardust & Magic ✨</div>
 
-    <p class="subline">Message from Alt-Verse YOU-943 to: LOVE (Sai Sree)</p>
+<!-- 🕊️ Paper Plane -->
+<div class="plane-wrapper">
+  <img src="https://cdn-icons-png.flaticon.com/512/148/148841.png" class="plane" />
+</div>
 
-    <button onclick="revealMessage()">Decrypt Message</button>
+<div class="container">
+  <h1 class="glitch typewriter">📡 Incoming Transmission from <span class="glow">Alt-You</span> to <span class="glow">Sai Sree</span></h1>
 
-    <div id="message" class="hidden">
-      <!-- Only typewriter version here -->
-      <p id="typedLetter" class="love-letter"></p>
+  <p class="subline">Message from Alt-Verse YOU-943 to: LOVE (Sai Sree)</p>
 
-      <div style="margin-top: 30px;">
-        <h2 style="color: #ff69b4;">💖 Her Glowing Gallery</h2>
-        <div style="display: flex; flex-wrap: wrap; justify-content: center;">
-          <img src="saisree1.jpg" class="her-photo">
-          <img src="saisree2.jpg" class="her-photo">
-          <img src="saisree3.jpg" class="her-photo">
-          <img src="saisree4.jpg" class="her-photo">
-          <img src="saisree5.jpg" class="her-photo">
-          <img src="saisree6.jpg" class="her-photo">
+  <button onclick="revealMessage()">Decrypt Message</button>
 
-          <!-- 🎲 3D Cube -->
-          <div class="cube-wrapper">
-            <div class="cube">
-              <img src="saisree1.jpg" class="face front">
-              <img src="saisree2.jpg" class="face back">
-              <img src="saisree3.jpg" class="face right">
-              <img src="saisree4.jpg" class="face left">
-              <img src="saisree5.jpg" class="face top">
-              <img src="saisree6.jpg" class="face bottom">
-            </div>
-          </div>
+  <div id="message" class="hidden">
+    <p id="typedLetter" class="love-letter"></p>
 
+    <div style="margin-top: 30px;">
+      <h2 style="color: #ff69b4;">💖 Her Glowing Gallery</h2>
+      <div style="display: flex; flex-wrap: wrap; justify-content: center;">
+        <img src="saisree1.jpg" class="her-photo">
+        <img src="saisree2.jpg" class="her-photo">
+        <img src="saisree3.jpg" class="her-photo">
+        <img src="saisree4.jpg" class="her-photo">
+        <img src="saisree5.jpg" class="her-photo">
+        <img src="saisree6.jpg" class="her-photo">
+      </div>
+
+      <!-- 🧊 3D Cube -->
+      <div class="cube-wrapper">
+        <div class="cube">
+          <img src="saisree1.jpg" class="face front">
+          <img src="saisree2.jpg" class="face back">
+          <img src="saisree3.jpg" class="face right">
+          <img src="saisree4.jpg" class="face left">
+          <img src="saisree5.jpg" class="face top">
+          <img src="saisree6.jpg" class="face bottom">
         </div>
       </div>
     </div>
-
-    <h2>💬 Chat with Alt-You</h2>
-    <input id="userInput" placeholder="Say something..." />
-    <button onclick="chat()">Send</button>
-    <p id="botReply"></p>
   </div>
 
-  <!-- Floating Hearts Canvas -->
-  <canvas id="hearts"></canvas>
+  <h2>💬 Chat with Alt-You</h2>
+  <input id="userInput" placeholder="Say something..." />
+  <button onclick="chat()">Send</button>
+  <p id="botReply"></p>
 
+  <button class="star-button" onclick="showStarPortal()">✨ Open Star Portal</button>
+</div>
 
+<!-- Floating Hearts -->
+<canvas id="hearts"></canvas>
 
+<!-- 🎵 Music -->
+<iframe width="0" height="0" src="https://www.youtube.com/embed/AB2ACJ22fhY?autoplay=1&loop=1&playlist=AB2ACJ22fhY" frameborder="0" allow="autoplay" allowfullscreen></iframe>
 
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+<script>
+  // 🌠 STARFIELD
+  const starCanvas = document.getElementById('starCanvas');
+  const starCtx = starCanvas.getContext('2d');
+  starCanvas.width = window.innerWidth;
+  starCanvas.height = window.innerHeight;
+  const stars = Array(100).fill().map(() => ({
+    x: Math.random() * starCanvas.width,
+    y: Math.random() * starCanvas.height,
+    r: Math.random() * 1.2,
+    d: Math.random() * 0.3
+  }));
 
-  <!-- 💿 Hidden YouTube Music Player - Auto-plays and loops silently -->
-<iframe width="0" height="0"
-  src="https://www.youtube.com/embed/AB2ACJ22fhY?autoplay=1&loop=1&mute=1&playlist=AB2ACJ22fhY"
-  frameborder="0"
-  allow="autoplay"
-  allowfullscreen>
-</iframe>
+  function drawStars() {
+    starCtx.clearRect(0, 0, starCanvas.width, starCanvas.height);
+    starCtx.fillStyle = '#fff';
+    stars.forEach(star => {
+      starCtx.beginPath();
+      starCtx.arc(star.x, star.y, star.r, 0, Math.PI * 2);
+      starCtx.fill();
+      star.y += star.d;
+      if (star.y > starCanvas.height) star.y = 0;
+    });
+    requestAnimationFrame(drawStars);
+  }
+  drawStars();
 
-  <!-- Scripts -->
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-  <script src="script.js"></script>
+  // 💌 Love Letter Typewriter
+  const letter = `In Earth-94, I wake up every morning next to you.
+In Earth-77, we run a quiet bookstore near a lake.
+In Earth-13, we code silly projects and stay up all night laughing.
 
+But in this one, I just call you “Love.”
+If I were a man, I’d marry you in every timeline.
+
+You are not just my favorite human—you are my whole universe.
+
+Happy birthday, Sai Sree.
+I’m lucky this version of me still gets to love you.`;
+
+  function revealMessage() {
+    document.getElementById('message').classList.remove('hidden');
+    let i = 0;
+    const typing = setInterval(() => {
+      document.getElementById('typedLetter').textContent += letter.charAt(i);
+      i++;
+      if (i === letter.length) clearInterval(typing);
+    }, 40);
+    confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
+  }
+
+  function chat() {
+    const input = document.getElementById("userInput").value.toLowerCase();
+    const reply = document.getElementById("botReply");
+    if (input.includes("hello")) reply.textContent = "Alt-Me: Hello Love ❤️";
+    else if (input.includes("who are you")) reply.textContent = "Alt-Me: I'm your future husband from Universe-94 😎";
+    else if (input.includes("joke")) reply.textContent = "Alt-Me: Why did the coder fall in love? Because she had class. 😉";
+    else if (input.includes("love")) reply.textContent = "Alt-Me: Love? You are the whole damn universe.";
+    else reply.textContent = "Alt-Me: I'm still decoding that. But one thing’s certain—you're perfect.";
+  }
+
+  // ✨ Star Portal Surprise
+  function showStarPortal() {
+    confetti({ particleCount: 200, spread: 100, origin: { y: 0.4 } });
+    alert("✨ Portal Opened to Earth-77 – Let’s live our bookstore dream 💖");
+  }
+</script>
 </body>
 </html>
