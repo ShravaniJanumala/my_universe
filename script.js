@@ -1,74 +1,56 @@
-// Mouse Trail
-const trailCanvas = document.getElementById("trail");
-const ctx = trailCanvas.getContext("2d");
-let width = window.innerWidth;
-let height = window.innerHeight;
-trailCanvas.width = width;
-trailCanvas.height = height;
-let particles = [];
-
-document.addEventListener("mousemove", e => {
-  particles.push({x: e.clientX, y: e.clientY, alpha: 1});
-});
-
-function drawTrail() {
-  ctx.clearRect(0, 0, width, height);
-  particles.forEach((p, i) => {
-    ctx.beginPath();
-    ctx.arc(p.x, p.y, 5, 0, Math.PI * 2);
-    ctx.fillStyle = `rgba(255,105,180,${p.alpha})`;
-    ctx.fill();
-    p.alpha -= 0.02;
-    if (p.alpha <= 0) particles.splice(i, 1);
-  });
-  requestAnimationFrame(drawTrail);
-}
-drawTrail();
-
-window.addEventListener('resize', () => {
-  trailCanvas.width = window.innerWidth;
-  trailCanvas.height = window.innerHeight;
-});
-
-// Start Portal
 function startPortal() {
-  document.getElementById('welcomeScreen').style.display = 'none';
-  document.getElementById('mainPortal').classList.remove('hidden');
+  document.getElementById('welcome-screen').style.display = 'none';
+  document.getElementById('main-portal').style.display = 'block';
 }
-
-// Typing Love Letter
-const message = `In Earth-94, I wake up every morning next to you.\nIn Earth-77, we run a quiet bookstore near a lake.\nIn Earth-13, we code silly projects and stay up all night laughing.\n\nBut in this one, I just call you “Love.”\nIf I were a man, I’d marry you in every timeline.\n\nYou are not just my favorite human—you are my whole universe.\n\nHappy birthday, Sai Sree.\nI’m lucky this version of me still gets to love you.`;
 
 function revealMessage() {
-  const letter = document.getElementById("typedLetter");
-  const btn = event.target;
-  btn.style.display = "none";
-  let i = 0;
-  const typeInterval = setInterval(() => {
-    if (i < message.length) {
-      letter.innerHTML += message.charAt(i) === '\n' ? '<br>' : message.charAt(i);
-      i++;
-    } else {
-      clearInterval(typeInterval);
-    }
+  const text = `In Earth-94, I wake up every morning next to you.\nIn Earth-77, we run a quiet bookstore near a lake.\nIn Earth-13, we code silly projects and stay up all night laughing.\n\nBut in this one, I just call you “Love.”\nIf I were a man, I’d marry you in every timeline.\n\nYou are not just my favorite human—you are my whole universe.\n\nHappy birthday, Sai Sree.\nI’m lucky this version of me still gets to love you.`;
+
+  const typedLetter = document.getElementById('typedLetter');
+  document.getElementById('message').style.display = 'block';
+  typedLetter.textContent = '';
+
+  let index = 0;
+  const interval = setInterval(() => {
+    typedLetter.textContent += text[index];
+    index++;
+    if (index >= text.length) clearInterval(interval);
   }, 50);
-  document.getElementById("message").classList.remove("hidden");
+
+  confetti();
 }
 
-// Countdown
-function countdown() {
-  const birthday = new Date("July 13, 2025 00:00:00");
-  const now = new Date();
-  const distance = birthday - now;
+// 🎉 Confetti
+function confetti() {
+  confettiLib({
+    particleCount: 200,
+    spread: 100,
+    origin: { y: 0.6 }
+  });
+}
+
+// 🎂 Countdown Timer
+const countdownTarget = new Date("July 13, 2025 00:00:00").getTime();
+const countdownElement = document.getElementById('countdown');
+
+setInterval(() => {
+  const now = new Date().getTime();
+  const distance = countdownTarget - now;
 
   const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
-  const mins = Math.floor((distance / 1000 / 60) % 60);
-  const secs = Math.floor((distance / 1000) % 60);
+  const hrs = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const mins = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  const secs = Math.floor((distance % (1000 * 60)) / 1000);
 
-  document.getElementById("countdown").innerHTML =
-    `${days}d ${hours}h ${mins}m ${secs}s`;
+  countdownElement.innerHTML = `${days}d ${hrs}h ${mins}m ${secs}s`;
+}, 1000);
 
-  setTimeout(countdown, 1000);
-}
-countdown();
+// 💫 Mouse Trail (optional)
+document.addEventListener('mousemove', function(e) {
+  const sparkle = document.createElement('div');
+  sparkle.className = 'sparkle';
+  sparkle.style.left = e.pageX + 'px';
+  sparkle.style.top = e.pageY + 'px';
+  document.body.appendChild(sparkle);
+  setTimeout(() => sparkle.remove(), 500);
+});
