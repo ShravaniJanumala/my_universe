@@ -64,3 +64,29 @@ function animate() {
   requestAnimationFrame(animate);
 }
 animate();
+
+
+#introText p {
+  opacity: 0;
+  animation: storyReveal 4s forwards;
+}
+
+#introText p:nth-child(2) {
+  animation-delay: 3s;
+}
+
+#introText p:nth-child(3) {
+  animation-delay: 6s;
+}
+
+@keyframes storyReveal {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
