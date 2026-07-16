@@ -193,3 +193,78 @@ button {
   }
 
 }
+
+
+
+
+/* 🌿 Golden Garden Atmosphere */
+
+.welcome-screen {
+  position: relative;
+  overflow: hidden;
+}
+
+
+.welcome-screen::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background:
+    radial-gradient(circle at 50% 30%, 
+    rgba(255,220,150,0.25),
+    transparent 40%);
+
+  pointer-events: none;
+
+  animation: sunlight 6s infinite alternate;
+}
+
+
+@keyframes sunlight {
+
+  from {
+    opacity: 0.5;
+  }
+
+  to {
+    opacity: 1;
+  }
+
+}
+
+
+/* ✨ Magical floating lights */
+
+.welcome-screen::after {
+
+  content: "✦  ✧  ✦  ✧  ✦";
+
+  position: absolute;
+
+  top: 20%;
+  left: 10%;
+
+  color: #f5d89a;
+
+  font-size: 25px;
+  letter-spacing: 50px;
+
+  opacity: 0.6;
+
+  animation: sparkleMove 8s infinite linear;
+
+}
+
+
+@keyframes sparkleMove {
+
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(80px);
+  }
+
+}
