@@ -1,83 +1,131 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Courier New', monospace;
-  background: black;
+  font-family: Georgia, serif;
+  background: #090817;
   color: white;
   overflow-x: hidden;
 }
 
+/* 🌙 Royal Welcome Screen */
 
 .welcome-screen {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   background:
-  linear-gradient(rgba(10,10,25,0.7), rgba(20,10,30,0.8)),
-  radial-gradient(circle at top, #5c3b52, #090914);
+    radial-gradient(circle at top, rgba(255,220,180,0.18), transparent 40%),
+    linear-gradient(135deg, #090817, #211426, #3b1d2b);
 
   color: #f8e7c8;
 }
+
+
 .royal-intro {
-  font-family: Georgia, serif;
   text-align: center;
+  padding: 40px;
+  animation: royalFade 3s ease;
 }
 
+
 .royal-intro p {
+  font-family: Georgia, serif;
   font-size: 28px;
   letter-spacing: 2px;
-  text-shadow: 0 0 15px rgba(255,220,180,0.5);
+  line-height: 1.7;
+  color: #f8e7c8;
+  text-shadow: 0 0 15px rgba(248,231,200,0.4);
 }
+
+
 .royal-intro button {
-  background: transparent;
-  color: #f5d89a;
-  border: 1px solid #c9a44c;
+  margin-top: 30px;
   padding: 15px 40px;
+
   border-radius: 50px;
+  border: 1px solid #d4af37;
+
+  background: transparent;
+  color: #f8e7c8;
+
   font-family: Georgia, serif;
+  font-size: 18px;
   letter-spacing: 2px;
+
+  cursor: pointer;
   transition: 0.5s;
 }
 
+
 .royal-intro button:hover {
-  background: rgba(201,164,76,0.2);
-  box-shadow: 0 0 25px rgba(201,164,76,0.5);
+  background: rgba(212,175,55,0.2);
+  box-shadow: 0 0 30px rgba(212,175,55,0.5);
 }
+
+
+/* Main Content */
 
 .container {
   padding: 2rem;
   text-align: center;
 }
 
+
 .hidden {
   display: none;
 }
 
+
 button {
   padding: 10px 20px;
-  background: #ff69b4;
-  color: white;
-  border: none;
+  background: transparent;
+  color: #f8e7c8;
+  border: 1px solid #d4af37;
   cursor: pointer;
-  font-size: 1rem;
+  font-family: Georgia, serif;
 }
 
+
+/* Glow Text */
+
 .glow {
-  color: #ff69b4;
-  text-shadow: 0 0 10px #ff69b4;
+  color: #d4af37;
+  text-shadow: 0 0 10px #d4af37;
 }
+
+
+/* Countdown */
 
 .countdown {
   margin: 2rem 0;
   font-size: 1.5rem;
 }
 
+
+/* Gallery */
+
 .gallery img {
   width: 150px;
   margin: 10px;
-  border: 2px solid #ff69b4;
+
+  border: 2px solid #d4af37;
   border-radius: 10px;
-  box-shadow: 0 0 15px #ff69b4;
+
+  box-shadow: 0 0 20px rgba(212,175,55,0.5);
+
+  transition: 0.5s;
 }
 
-/* Cube */
+
+.gallery img:hover {
+  transform: scale(1.08);
+}
+
+
+/* 💎 Memory Cube */
+
 .cube-wrapper {
   perspective: 1000px;
   margin: 50px auto;
@@ -85,21 +133,29 @@ button {
   height: 200px;
 }
 
+
 .cube {
   width: 100%;
   height: 100%;
   position: relative;
+
   transform-style: preserve-3d;
-  animation: rotate 15s infinite linear;
+
+  animation: rotate 18s infinite linear;
 }
+
 
 .face {
   position: absolute;
+
   width: 200px;
   height: 200px;
+
   object-fit: cover;
+
   backface-visibility: hidden;
 }
+
 
 .front { transform: rotateY(0deg) translateZ(100px); }
 .back { transform: rotateY(180deg) translateZ(100px); }
@@ -108,75 +164,32 @@ button {
 .top { transform: rotateX(90deg) translateZ(100px); }
 .bottom { transform: rotateX(-90deg) translateZ(100px); }
 
+
 @keyframes rotate {
-  from { transform: rotateX(0) rotateY(0); }
-  to { transform: rotateX(360deg) rotateY(360deg); }
+
+  from {
+    transform: rotateX(0) rotateY(0);
+  }
+
+  to {
+    transform: rotateX(360deg) rotateY(360deg);
+  }
+
 }
 
 
-
-
-
-
-/* Royal Midnight Opening */
-
-/* Royal Midnight Opening */
-
-.welcome-screen {
-  background:
-    radial-gradient(circle at top, rgba(255,220,180,0.15), transparent),
-    linear-gradient(135deg, #0b1026, #24152f, #3b1d2b);
-
-  color: #fff;
-}
-
-.royal-intro {
-  text-align: center;
-  padding: 40px;
-  animation: royalFade 3s ease;
-}
-
-.royal-intro p {
-  font-family: "Georgia", serif;
-  font-size: 28px;
-  letter-spacing: 1px;
-  line-height: 1.6;
-  color: #f8e7c8;
-}
-
-.royal-intro button {
-  margin-top: 30px;
-  padding: 14px 35px;
-  border-radius: 30px;
-  border: 1px solid #d4af37;
-  background: transparent;
-  color: #f8e7c8;
-  font-size: 18px;
-  cursor: pointer;
-}
-
-.royal-intro button:hover {
-  background: rgba(212,175,55,0.2);
-}
+/* ✨ Story Opening Animation */
 
 @keyframes royalFade {
+
   from {
     opacity:0;
     transform: translateY(30px);
   }
-  to {
-    opacity:1;
-    transform: translateY(0);
-  }
-}
 
-@keyframes royalFade {
-  from {
-    opacity:0;
-    transform: translateY(30px);
-  }
   to {
     opacity:1;
     transform: translateY(0);
   }
+
 }
