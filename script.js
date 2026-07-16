@@ -1,6 +1,25 @@
+let player;
+
+function onYouTubeIframeAPIReady() {
+  player = new YT.Player("player", {
+    height: "0",
+    width: "0",
+    videoId: "AB2ACJ22fhY",
+    playerVars: {
+      autoplay: 0,
+      loop: 1,
+      playlist: "AB2ACJ22fhY"
+    }
+  });
+}
+
 function startPortal() {
   document.getElementById("welcomeScreen").classList.add("hidden");
   document.getElementById("mainContainer").classList.remove("hidden");
+
+  if (player) {
+    player.playVideo();
+  }
 }
 
 function revealMessage() {
@@ -16,7 +35,8 @@ setInterval(() => {
   const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
   const minutes = Math.floor((distance / (1000 * 60)) % 60);
   const seconds = Math.floor((distance / 1000) % 60);
-  document.getElementById("timer").textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+  document.getElementById("timer").textContent =
+    `${days}d ${hours}h ${minutes}m ${seconds}s`;
 }, 1000);
 
 // Mouse trail effect
