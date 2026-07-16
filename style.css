@@ -7,16 +7,38 @@ body {
   overflow-x: hidden;
 }
 
+
 .welcome-screen {
-  position: fixed;
-  width: 100%;
-  height: 100vh;
-  background: radial-gradient(circle, #000, #111);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  z-index: 10;
+  background:
+  linear-gradient(rgba(10,10,25,0.7), rgba(20,10,30,0.8)),
+  radial-gradient(circle at top, #5c3b52, #090914);
+
+  color: #f8e7c8;
+}
+.royal-intro {
+  font-family: Georgia, serif;
+  text-align: center;
+}
+
+.royal-intro p {
+  font-size: 28px;
+  letter-spacing: 2px;
+  text-shadow: 0 0 15px rgba(255,220,180,0.5);
+}
+.royal-intro button {
+  background: transparent;
+  color: #f5d89a;
+  border: 1px solid #c9a44c;
+  padding: 15px 40px;
+  border-radius: 50px;
+  font-family: Georgia, serif;
+  letter-spacing: 2px;
+  transition: 0.5s;
+}
+
+.royal-intro button:hover {
+  background: rgba(201,164,76,0.2);
+  box-shadow: 0 0 25px rgba(201,164,76,0.5);
 }
 
 .container {
@@ -98,6 +120,8 @@ button {
 
 /* Royal Midnight Opening */
 
+/* Royal Midnight Opening */
+
 .welcome-screen {
   background:
     radial-gradient(circle at top, rgba(255,220,180,0.15), transparent),
@@ -133,6 +157,17 @@ button {
 
 .royal-intro button:hover {
   background: rgba(212,175,55,0.2);
+}
+
+@keyframes royalFade {
+  from {
+    opacity:0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity:1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes royalFade {
