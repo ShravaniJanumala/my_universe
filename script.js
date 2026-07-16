@@ -13,6 +13,8 @@ function onYouTubeIframeAPIReady() {
   });
 }
 
+
+
 function startPortal() {
   document.getElementById("welcomeScreen").classList.add("hidden");
   document.getElementById("mainContainer").classList.remove("hidden");
@@ -21,7 +23,6 @@ function startPortal() {
     player.playVideo();
   }
 }
-
 function revealMessage() {
   document.getElementById("message").classList.remove("hidden");
 }
